@@ -93,7 +93,7 @@ I had a heck of a time getting this to install with an intact bootloader. Milage
         env GRUB_DISABLE_OS_PROBER="true" grub-mkconfig -o /boot/grub/grub.cfg
         grub-install --verbose --target=x86_64-efi
 12. If you can boot, I remembered. If not, try boot from file in the bootmanager or the grub prompt. a grub prompt boot would be something like the following. Then try to fix whatever I remembered incorrectly.
-    .. code-block:: shell
+    .. code-block:: bash
        linux (hd0,gpt2)/vmlinuz root=/dev/mapper/vg0-slash tmp_tis.interupts=0 tpm_tis.force=0
        initrd (hd0,gpt2)/initrd.img
        boot

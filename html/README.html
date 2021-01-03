@@ -1,0 +1,351 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Ubuntu 20.04 on Asus C302CA Notes &#8212; Python  documentation</title>
+    <link rel="stylesheet" href="_static/nonav.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="ubuntu-20-04-on-asus-c302ca-notes">
+<h1>Ubuntu 20.04 on Asus C302CA Notes<a class="headerlink" href="#ubuntu-20-04-on-asus-c302ca-notes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what">
+<h2>What<a class="headerlink" href="#what" title="Permalink to this headline">¶</a></h2>
+<p>The Asus Chromebook Flip C302CA was kind of a great deal a long while ago when it was new, but as a programmer I had a love hate relationship with it. The form factor, long battery life, table / laptop etc is just fantastic. Nothing like blowing 4 hours on battery and still having half to go. And the thing is small, with a decent keyboard so you can tablet or laptop to your hearts content.</p>
+<p>The hate came with chrome os. There was promise of linux apps that every other platform after the c302ca got years before I gave up on waiting and got this working with linux. Unfortunately I had to do it a second time for an upgrade and some stuff changed and I didn’t take notes, so… This time I took notes.</p>
+<p>The little device is now my current favorite device ever.  All aspects of it are working including suspend, resume, audio, rotation, touch, disabling the keyboard and touch pad in tablet mode, and automatically bringing up an on screen keyboard when in table mode and you bring focus to a text input. All of this on ubuntu 20.4 LTS so I shouldn’t have to do this again for a good long while.</p>
+<p>Google has since finally allegedly brought linux apps to the skylake/cave devices within chromeos, but why bother. I can’t say I miss it, but it’s not chomeos, it is me. I would rather build the sandbox than play in it, and it’s a much more useful tool to build sandboxes if you void the warranty and put some linux on it.</p>
+<p>Much of this was written after the fact so there might be some errors of memory.</p>
+</div>
+<div class="section" id="process">
+<h2>Process<a class="headerlink" href="#process" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="void-the-warranty">
+<h3>Void the warranty<a class="headerlink" href="#void-the-warranty" title="Permalink to this headline">¶</a></h3>
+<p>This requires removing the <a class="reference external" href="https://google.com/search?q=write+protect+screw+ca">write protect screw</a> and flashing to a <a class="reference external" href="https://mrchromebox.tech">third party</a> BIOS to allow install native linux. That process is covered elsewhere.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The above steps can brick a device, and will stop you from going back to chromeos without some additional drama.</p>
+</div>
+</div>
+<div class="section" id="mostly-install-ubuntu-desktop-20-04">
+<h3>(Mostly) Install Ubuntu Desktop 20.04<a class="headerlink" href="#mostly-install-ubuntu-desktop-20-04" title="Permalink to this headline">¶</a></h3>
+<p>I had a heck of a time getting this to install with an intact bootloader. Milage may vary, but you can complete it without a boot loader from the live disk then just fix it so it boots. These instructions are from memory so they might not work either.</p>
+<ol class="arabic">
+<li><p class="first">Boot into the live CD and get on the internet.</p>
+</li>
+<li><p class="first">Temporarily ix screen rotation. Turn the screen upside down, click the drop down at the top (now bottom) right and lock screen rotation.</p>
+</li>
+<li><p class="first">Optional: setup your paritions to install to in the live cd. I don’t think you need to put boot as a primary partition, but it does make fixing boot issues easier.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># I created something like the following with something like the following.</span>
+<span class="c1"># NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</span>
+<span class="c1"># mmcblk0       179:8    0 58.2G  0 disk</span>
+<span class="c1"># ├─mmcblk0p1   179:9    0  128M  0 part /boot/efi</span>
+<span class="c1"># ├─mmcblk0p2   179:10   0    1G  0 part /boot</span>
+<span class="c1"># └─mmcblk0p3   179:11   0 57.1G  0 part</span>
+<span class="c1">#   ├─vg0-slash 253:0    0   14G  0 lvm  /</span>
+<span class="c1">#   ├─vg0-home  253:1    0   14G  0 lvm  /home</span>
+<span class="c1">#   └─vg0-swap  253:2    0    4G  0 lvm  [SWAP]</span>
+sudo bash -il
+sfdisk&lt;&lt;<span class="s1">&#39;-END&#39;</span>
+        label: gpt
+        label-id: 138A1911-51AC-4B00-BA5A-8E4F1A09FBFD
+        device: /dev/mmcblk0
+        unit: sectors
+        first-lba: <span class="m">34</span>
+        last-lba: <span class="m">122142686</span>
+
+        /dev/mmcblk0p1 : <span class="nv">start</span><span class="o">=</span>        <span class="m">4096</span>, <span class="nv">size</span><span class="o">=</span>      <span class="m">262144</span>, <span class="nv">type</span><span class="o">=</span>C12A7328-F81F-11D2-BA4B-00A0C93EC93B, <span class="nv">uuid</span><span class="o">=</span>833E3796-0282-4F67-B0A4-B937D758EF8B, <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;UEFI System&quot;</span>
+        /dev/mmcblk0p2 : <span class="nv">start</span><span class="o">=</span>      <span class="m">268288</span>, <span class="nv">size</span><span class="o">=</span>     <span class="m">2097152</span>, <span class="nv">type</span><span class="o">=</span>0FC63DAF-8483-4772-8E79-3D69D8477DE4, <span class="nv">uuid</span><span class="o">=</span>14459C81-CC21-4516-9C07-45AA6E0C3296, <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;boot&quot;</span>, <span class="nv">attrs</span><span class="o">=</span><span class="s2">&quot;LegacyBIOSBootable&quot;</span>
+        /dev/mmcblk0p3 : <span class="nv">start</span><span class="o">=</span>     <span class="m">2365440</span>, <span class="nv">size</span><span class="o">=</span>   <span class="m">119775232</span>, <span class="nv">type</span><span class="o">=</span>E6D6D379-F507-44C2-A23C-238F2A3DF928, <span class="nv">uuid</span><span class="o">=</span>9AA487E3-1C14-47DB-B03C-075EAABE6AD5, <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;pv1</span>
+<span class="s2">END</span>
+<span class="s2">apt-get update</span>
+<span class="s2">sudo apt-get install lvm2</span>
+<span class="s2">vgcreate vg0 /dev/mmcblk0p3</span>
+<span class="s2">vgchange -a y vg0</span>
+<span class="s2">lvcreate -n swap -L 4G vg0</span>
+<span class="s2">lvcreate -n slash -L 14G vg0</span>
+<span class="s2">lvcreate -n home -L 14G vg0</span>
+<span class="s2">mkfs.ext4 -L slash /dev/mapper/vg0-slash</span>
+<span class="s2">mkfs.ext4 -L home /dev/mapper/vg0-home</span>
+<span class="s2">mkswap -L swap0 /dev/mapper/vg0-swap</span>
+<span class="s2">mkfs.ext4 -L boot /dev/mmcblk0p2</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Check out properties on the “Install …” app on the desktop to find the sudo / command they use to start the installer.</p>
+</li>
+<li><p class="first">Add ‘–help’ to the quoted invocation of the installer to find the “install without bootloader” flag.</p>
+</li>
+<li><p class="first">Open a terminal and start the installer with a minus bootload flag.</p>
+</li>
+<li><p class="first">Install selecting the paritions you just setup for /boot / swap /home and UEFI.</p>
+</li>
+<li><p class="first">next next finish wait continue instead of rebooting.</p>
+</li>
+<li><p class="first">Capture some info on your filesystem layout in case you need it. <em>lsblk -f /dev/mmcblk0</em> captured in a picture with your phone should do.</p>
+</li>
+<li><p class="first">Do a <em>df</em>. I forget if target is still mounted at this point. If it isn’t, you can mount it with something like.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mount /dev/mapper/vg0-slash /somepath
+mount /dev/mmcblk0p2 /somepath/boot
+mount /dev/mmcblk0p1 /somepath/efi
+chroot /somepath
+mount -t udevtmpfs udev /dev
+mount -t devpts devpts /dev/pts
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+</pre></div>
+</div>
+</li>
+<li><p class="first">Try to install a bootloader. Is it just me, or do you also resent <a class="reference external" href="https://www.google.com/search?q=Richard+Stallman&amp;tbm=isch">RMS</a> for putting out man pages refering you to info pages because he’s obsessed with emacs?</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Edit /etc/default/grub and set the folowing vars</span>
+<span class="nv">GRUB_CMDLINE_LINE</span><span class="o">=</span><span class="s2">&quot;acpi_osi=Linux tpm_tis.interupts=0 tpm_tis.force=0&quot;</span>
+<span class="nv">GRUB_CMDLINE_LINUX_DEFAULT</span><span class="o">=</span><span class="s2">&quot;i915.enable_guc=2 i915.modeset=1 intel_ide.max_cstate=7 i915.fastboot=1 vt.handoff=7 i915.alpha_support=1 i915.fastboot=1 splash&quot;</span>
+<span class="c1"># then run the following as root.</span>
+env <span class="nv">GRUB_DISABLE_OS_PROBER</span><span class="o">=</span><span class="s2">&quot;true&quot;</span> grub-mkconfig -o /boot/grub/grub.cfg
+grub-install --verbose --target<span class="o">=</span>x86_64-efi
+</pre></div>
+</div>
+</li>
+<li><p class="first">If you can boot, I remembered. If not, try boot from file in the bootmanager or the grub prompt. a grub prompt boot would be something like the following. Then try to fix whatever I remembered incorrectly.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>linux <span class="o">(</span>hd0,gpt2<span class="o">)</span>/vmlinuz <span class="nv">root</span><span class="o">=</span>/dev/mapper/vg0-slash tmp_tis.interupts<span class="o">=</span><span class="m">0</span> tpm_tis.force<span class="o">=</span><span class="m">0</span>
+initrd <span class="o">(</span>hd0,gpt2<span class="o">)</span>/initrd.img
+boot
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="about-that-screen-rotation">
+<h3>About that screen rotation<a class="headerlink" href="#about-that-screen-rotation" title="Permalink to this headline">¶</a></h3>
+<p>If your screen is upside down again, do step 2 above to temporarily fix it then disable iio-sensor-proxy.service.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>systemctl disable iio-sensor-proxy.service
+systemctl stop iio-sensor-proxy.service
+systemctl mask iio-sensor-proxy.service
+</pre></div>
+</div>
+<p>So that iio sensor service connects various industrial sensors on the iio bus throughout the device. Among them are two accelerometers, one each in the base and lid, a gyro, and an ambient light sensor. What iio-sensor-proxy does is offer a multithreaded service to find out what sensors exist, and gather data from them over the dbus. It almost works so well you could kick yourself.  For starters, it only deals with the one accelerator in the lid that is mounted upside down and the ambient light sensor. Gnome-shell than has some compiled in goodies to automatically turn on the rotate screen lock / unlock menu item and keep adjusting brightness in response to the ambient light sensor. It appears that this was recently cutover to iio-sensor-proxy and some of the gsettings to disable the plugin simply don’t do anything currently, but shutting of iio-sensor-proxy works like a charm. If you log out and log back in again, the options for screen rotate will be gone. For now, you are better off without it. Even though it would spastically and aggressively rotate a screen, and the directionality of it can be fixed it won’t do most of what we need, and it also won’t stop playing with the screen brightness which drove me nuts.</p>
+</div>
+<div class="section" id="replacing-iio-sensor-proxy-for-a-tablet">
+<h3>Replacing iio-sensor-proxy for a tablet.<a class="headerlink" href="#replacing-iio-sensor-proxy-for-a-tablet" title="Permalink to this headline">¶</a></h3>
+<p>What it doesn’t do?</p>
+<ol class="arabic simple">
+<li>Adjust the track pad or touch orientation when it flips the screen around so suddenly everything is backwards directionally.</li>
+<li>Disable the keyboard in tent or tablet mode.</li>
+<li>Present a visual keyboard when there is a text input in tablet or tent mode and the physical keyboard is disabled.</li>
+</ol>
+<p>As it turns out, this is a mathy problem. For starters, there is no lid angle sensor. And the gyro is mostly useless and power hungry and all you get out of an accelerometer is some strange numbers for xyz coordinates representing force and along what axis, but even that is a little wonky since the number wrap around on themselves in several spots as the sensor positions change. Long story short, these can be used to decipher velocity along an axis of the sensor which, when at a stand still, can tell you the position of the sensor in space accross three rotational axis given the constant of gravity! AHA you say! So if my sensor falls through a vacuum at terminal velocity, the accelerometer will be all zeros! And that is neat, but how do know if it is in tent or tablet mode or the other weird on where it’s like tent, but the keyboard is upside down acting as a display holder?</p>
+<p>For that, you need both accelerometers. Now, with <a class="reference external" href="https://www.youtube.com/watch?v=U6XhVj5GF0I">gravity riding everything</a>, you have two set of three axis positioning data that can be compared to establish positional planes in three dimensional space that must intersect eachother or be parallel.</p>
+<p>Yes, that is a lot of math. It turns out that you don’t actually need to do that though largely because the hinge creates one fixed relationship around which the others pivot. Yay, down to two dimensions. Also, you don’t have to really do the math, just compare the readings.</p>
+<p>That is just what <a class="reference external" href="src/modwatcher.py">src/modewatcher.py</a> will do for you minus all of the dbus complexity. I originally wrote it for 19.10 xubuntu and the only thing I needed to change was change disp from “eDP1” to “eDP-1”.</p>
+</div>
+<div class="section" id="installing-modewatcher-with-onboard-on-screen-keyboard">
+<h3>Installing modewatcher with onboard (on screen keyboard)<a class="headerlink" href="#installing-modewatcher-with-onboard-on-screen-keyboard" title="Permalink to this headline">¶</a></h3>
+<p>Some basic notes.</p>
+<p>The rotation is lazy. Instead of almost the next position and rapidly changing, it waits until it gets serveral consistent polls confirming the new position before changing, then it blocks another rapid change for a few polls. I hate it when my Tesla breaks for pedestrians and I lose my place in the LA times as the screen jumps to inappropriate orientations and back again. *kidding* You can make it more aggressive by messing with some of the vars that aren’t device identifiers or sensor paths.</p>
+<p>It will only switch to portate modes when the hinge is folded completely over because that is the only time it makes sense (to me).</p>
+<p>Some of the vars are xinput ids or xrandr display identifiers which you can confirm with <cite>xinput –list</cite> or <cite>xrandr –listmonitors</cite>. That may differ.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Do this as your non-priv user. Commands will call sudo where escalation is needed.</p>
+</div>
+<ol class="arabic">
+<li><p class="first">Files to install.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt-get update
+sudo apt-get install git onboard gnome-teaks mousetweak x11-xserver-utils xinput
+<span class="nb">cd</span> ~
+git clone https://github.com/devendor/c302ca
+<span class="nb">test</span> -d ~/bin <span class="o">||</span> mkdir ~/bin
+cp ~/c302ca/src/modewatcher.py ~/bin/
+chmod +x ~/bin/modewatcher.py
+<span class="nb">test</span> -d ~/.local/share/applications/ <span class="o">||</span> mkdir -p ~/.local/share/applications/
+sed -i <span class="s2">&quot;s#/home/rferguson#</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">#&#39; ~/ca/src/devendor-modewatcher.desktop</span>
+<span class="s2">desktop-file-install  --dir=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.local/share/applications/ ~/c302ca/src/devendor-modewatcher.desktop</span>
+<span class="s2">cat&lt;&lt;&#39;END&#39;&gt;&gt;~/.pam_environment</span>
+<span class="s2">ACCESSIBILITY_ENABLED=1</span>
+<span class="s2">GNOME_ACCESSIBILITY=1</span>
+<span class="s2">QT_ACCESSIBILITY=1</span>
+<span class="s2">END</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">In gnomes settings &gt; Universal Access set <strong>Always show universal access menu = True</strong></p>
+</li>
+<li><p class="first">In Onboard Preferences. Note modewatcher will hide and pause autoshow via dbus in normal mode. The builting on-screen keyboard lacks features so I use onboard in a user session.
+<strong>General &gt; Show when unlocking screen = False</strong>
+<strong>Auto Show &gt; General &gt; Auto-show when editing text = True</strong>
+<strong>Auto Show &gt; General &gt; Hide when typeing on a physical keyboard = False</strong>
+<strong>Auto Show &gt; Convertable Devices &gt; all False</strong>
+<strong>Auto Show &gt; External Keyboard &gt; all False</strong></p>
+</li>
+<li><p class="first">From the gnome tweaks menu. Add “Onboard” and “devendor modewatcher” to startup applications.</p>
+</li>
+<li><p class="first">Fix for chrome if you have it installed. Similar should work for chome other based browsers. See notes in chrome://accessibility.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Chrome requires a startup flag to enable accessibility persistence.</span>
+<span class="nb">test</span> -f /usr/share/applications/google-chrome.desktop <span class="o">&amp;&amp;</span>
+sed <span class="s1">&#39;s#/google-chrome-stable#/google-chrome-stable --force-renderer-accessibility#g&#39;</span>&lt;/usr/share/applications/google-chrome.desktop &gt;~/google-chrome.desktop <span class="o">&amp;&amp;</span>
+desktop-file-install --dir<span class="o">=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.local/share/applications/google-chrome.desktop ~/google-chrome.desktop <span class="o">&amp;&amp;</span>
+rm ~/google-chrome.desktop
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="fixing-sound">
+<h3>Fixing Sound<a class="headerlink" href="#fixing-sound" title="Permalink to this headline">¶</a></h3>
+<p>You may have noticed that sound doesn’t work. This was somewhat easier to fix in 19.10 before some alsa sound changes that moved SOF into the default for intel sound drivers. The trouble is that this is some weird intelish sound hardware working in coordination with some other sound chips that I can’t get to work with the sof open firmware or kernels built to include it. So custom kernel time.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Installing an unsigned kernel from the internet is easier, but not a good security choice. You should probably skip to building a kernel instead of using mine.</p>
+</div>
+<p><strong>The Lazy (insecure) way</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~
+apt install ./c302ca/debs/linux-headers-5.10.3_5.10.3-1_amd64.deb ./c302ca/debs/linux-image-5.10.3_5.10.3-1_amd64.deb ./c302ca/debs/linux-libc-dev_5.10.3-1_amd64.deb
+</pre></div>
+</div>
+<p>skip to step 8</p>
+<p><strong>The right way</strong></p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">As non priv user please.</p>
+</div>
+<ol class="arabic">
+<li><p class="first">Go to <a class="reference external" href="https://kernel.org">kernel.org</a> and download the latest source release or whatever release you fancy.</p>
+</li>
+<li><p class="first">Verify you checksum.</p>
+</li>
+<li><p class="first">Install build dependencies. I think this is enough? It will fail and complain if I missed something.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt install libc6-dev ncurses-dev gcc make binutils elfutils flex bison devscripts libssl-dev python-pytest
+</pre></div>
+</div>
+</li>
+<li><p class="first">unpack, configure, build.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>tar -Jxvf ~/Downloads/linux-x.y.z.tar.xz
+<span class="nb">cd</span> linux-x.y.z
+cp ~/c302ca/src/kernel-config .config
+make <span class="nb">help</span> <span class="c1"># in case you are curious.</span>
+make oldconfig
+make testconfig
+make -j2 bindeb-pkg
+</pre></div>
+</div>
+</li>
+<li><p class="first">Get a pot of coffee. Processors keep getting faster, but the kernel keeps getting more modules and I was too lazy to do much pruning from the distro kitchen sink kernel.</p>
+</li>
+<li><p class="first">When it is done, if it worked.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ..
+sudo apt install linux-image-x.y.z_x.y.z-1_amd64.deb linux-headers-x.y.z_x.y.z-1_amd64.deb linux-libc-dev-x.y.z_x.y.z-1_amd64.deb
+mv linux*.deb ~/c302ca/debs/
+cp linux-x-y-z/.config ~/c302ca/debs/kernel-config
+rm -rf linux-x-y-z ~/Downloads/linux-x.y.z.tar.xz
+</pre></div>
+</div>
+</li>
+<li><p class="first">If that was your first time, congratulations. Next time get out of the chair while it compiles because you will never get those moments back.</p>
+</li>
+<li><p class="first">Point intel-hda-snd at old firmware.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /lib/firmware/intel
+sudo ln -sf dsp_fw_release_v969.bin dsp_fw_release.bin
+</pre></div>
+</div>
+</li>
+<li><p class="first">Place the topology file where the driver currently looks for it. Formerly used dfw_sst.bin. loglevel=7 boot flag should show where it is trying to find a device topology to drive the card. Note that this is built from src/skl_n88l25_m98357a-tplg. See comments in the file.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~
+sudo cp ./c302ca/fs/lib/firmware/skl_n88l25_m98357a-tplg.bin /lib/firmware/
+</pre></div>
+</div>
+</li>
+<li><p class="first">Add the alsa use case manager configuration.</p>
+</li>
+</ol>
+<blockquote>
+<div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~
+sudo cp -r ./c302ca/fs/usr/share/ucm2/sklnau8825max /usr/share/alsa/ucm2/
+sudo chown -R +r /usr/share/alsa/ucm2/sklnau8825max
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="11">
+<li>Add some acpi event listeners for headphone / speaker switching.</li>
+</ol>
+<blockquote>
+<div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~
+sudo cp ./c302ca/fs/etc/acpi/events/* /etc/acpi/events/
+sudo chmod +r /etc/acpi/events/<span class="o">{</span>plugheadphone,plugheadset,unplugheadphone<span class="o">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic" start="12">
+<li><p class="first">Reboot and check.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>rferguson@cave:~$ cat /proc/asound/cards
+ <span class="m">0</span> <span class="o">[</span>sklnau8825max  <span class="o">]</span>: sklnau8825max - sklnau8825max
+              Google-Cave-1.0
+rferguson@cave:~$ pactl list cards
+Card <span class="c1">#0</span>
+        Name: alsa_card.platform-skl_n88l25_m98357a
+        Driver: module-alsa-card.c
+        Owner Module: <span class="m">24</span>
+        Properties:
+                alsa.card <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
+                alsa.card_name <span class="o">=</span> <span class="s2">&quot;sklnau8825max&quot;</span>
+                alsa.long_card_name <span class="o">=</span> <span class="s2">&quot;Google-Cave-1.0&quot;</span>
+                alsa.driver_name <span class="o">=</span> <span class="s2">&quot;snd_skl_nau88l25_max98357a&quot;</span>
+                device.bus_path <span class="o">=</span> <span class="s2">&quot;platform-skl_n88l25_m98357a&quot;</span>
+                sysfs.path <span class="o">=</span> <span class="s2">&quot;/devices/platform/skl_n88l25_m98357a/sound/card0&quot;</span>
+                device.form_factor <span class="o">=</span> <span class="s2">&quot;internal&quot;</span>
+                device.string <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
+                device.description <span class="o">=</span> <span class="s2">&quot;Built-in Audio&quot;</span>
+                module-udev-detect.discovered <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
+                device.icon_name <span class="o">=</span> <span class="s2">&quot;audio-card&quot;</span>
+        Profiles:
+                Headphone: Headphone <span class="o">(</span>sinks: <span class="m">1</span>, sources: <span class="m">1</span>, priority: <span class="m">1</span>, available: yes<span class="o">)</span>
+                Speaker: Speaker <span class="o">(</span>sinks: <span class="m">1</span>, sources: <span class="m">1</span>, priority: <span class="m">1</span>, available: yes<span class="o">)</span>
+                off: Off <span class="o">(</span>sinks: <span class="m">0</span>, sources: <span class="m">0</span>, priority: <span class="m">0</span>, available: yes<span class="o">)</span>
+        Active Profile: Speaker
+        Ports:
+                <span class="o">[</span>Out<span class="o">]</span> InternalMic: Internal Mic <span class="o">(</span>priority: <span class="m">100</span>, latency offset: <span class="m">0</span> usec<span class="o">)</span>
+                        Part of profile<span class="o">(</span>s<span class="o">)</span>: Headphone, Speaker
+                <span class="o">[</span>Out<span class="o">]</span> Headphone: Headphone <span class="o">(</span>priority: <span class="m">100</span>, latency offset: <span class="m">0</span> usec<span class="o">)</span>
+                        Part of profile<span class="o">(</span>s<span class="o">)</span>: Headphone
+                <span class="o">[</span>In<span class="o">]</span> InternalMic: Internal Mic <span class="o">(</span>priority: <span class="m">2</span>, latency offset: <span class="m">0</span> usec<span class="o">)</span>
+                        Part of profile<span class="o">(</span>s<span class="o">)</span>: Headphone, Speaker
+                <span class="o">[</span>Out<span class="o">]</span> Speaker: Speaker <span class="o">(</span>priority: <span class="m">100</span>, latency offset: <span class="m">0</span> usec<span class="o">)</span>
+                        Part of profile<span class="o">(</span>s<span class="o">)</span>: Speaker
+                <span class="o">[</span>In<span class="o">]</span> Speaker: Speaker <span class="o">(</span>priority: <span class="m">100</span>, latency offset: <span class="m">0</span> usec<span class="o">)</span>
+                        Part of profile<span class="o">(</span>s<span class="o">)</span>: Speaker
+</pre></div>
+</div>
+</li>
+<li><p class="first">Plug in some headphone and retry <strong>pactl list cards</strong> hopefulling noting a change in the Active Profile.</p>
+</li>
+<li><p class="first">Try to use it.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="call-out">
+<h2>Call Out<a class="headerlink" href="#call-out" title="Permalink to this headline">¶</a></h2>
+<p>Please do let me know if you get sound working under SOF or get the little speaker icon to switch to a headphone icon when you switch outputs.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

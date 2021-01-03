@@ -197,13 +197,13 @@ git clone https://github.com/devendor/c302ca
 cp ~/c302ca/src/modewatcher.py ~/bin/
 chmod +x ~/bin/modewatcher.py
 <span class="nb">test</span> -d ~/.local/share/applications/ <span class="o">||</span> mkdir -p ~/.local/share/applications/
-sed -i <span class="s2">&quot;s#/home/rferguson#</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">#&#39; ~/ca/src/devendor-modewatcher.desktop</span>
-<span class="s2">desktop-file-install  --dir=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.local/share/applications/ ~/c302ca/src/devendor-modewatcher.desktop</span>
-<span class="s2">cat&lt;&lt;&#39;END&#39;&gt;&gt;~/.pam_environment</span>
-<span class="s2">ACCESSIBILITY_ENABLED=1</span>
-<span class="s2">GNOME_ACCESSIBILITY=1</span>
-<span class="s2">QT_ACCESSIBILITY=1</span>
-<span class="s2">END</span>
+sed -i <span class="s2">&quot;s#/home/rferguson#</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">#&quot;</span> ~/ca/src/devendor-modewatcher.desktop
+desktop-file-install  --dir<span class="o">=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.local/share/applications/ ~/c302ca/src/devendor-modewatcher.desktop
+cat<span class="s">&lt;&lt;&#39;END&#39;&gt;&gt;~/.pam_environment</span>
+<span class="s">ACCESSIBILITY_ENABLED=1</span>
+<span class="s">GNOME_ACCESSIBILITY=1</span>
+<span class="s">QT_ACCESSIBILITY=1</span>
+<span class="s">END</span>
 </pre></div>
 </div>
 </li>

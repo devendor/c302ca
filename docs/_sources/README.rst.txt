@@ -172,7 +172,7 @@ Some of the vars are xinput ids or xrandr display identifiers which you can conf
       cp ~/c302ca/src/modewatcher.py ~/bin/
       chmod +x ~/bin/modewatcher.py
       test -d ~/.local/share/applications/ || mkdir -p ~/.local/share/applications/
-      sed -i "s#/home/rferguson#${HOME}#' ~/ca/src/devendor-modewatcher.desktop
+      sed -i "s#/home/rferguson#${HOME}#" ~/ca/src/devendor-modewatcher.desktop
       desktop-file-install  --dir=${HOME}/.local/share/applications/ ~/c302ca/src/devendor-modewatcher.desktop
       cat<<'END'>>~/.pam_environment
       ACCESSIBILITY_ENABLED=1

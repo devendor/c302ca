@@ -4,6 +4,11 @@ Ubuntu 20.04 on Asus C302CA Notes
 
 Github `source code`_ and `documentation`_.
 
+.. contents::
+        :depth: 3
+        :local:
+
+
 What 
 ====
 

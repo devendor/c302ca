@@ -1,0 +1,2 @@
+event=jack/microphone MICROPHONE plug
+action=sleep 2 && sudo -u '#1000' XDG_RUNTIME_DIR=/run/user/1000 pactl set-card-profile 0 Headset

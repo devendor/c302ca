@@ -1,0 +1,2 @@
+event=jack/headphone HEADPHONE plug
+action=sudo -u '#1000' XDG_RUNTIME_DIR=/run/user/1000 pactl set-card-profile 0 Headphones

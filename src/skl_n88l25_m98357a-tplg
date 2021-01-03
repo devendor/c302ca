@@ -1,0 +1,4012 @@
+# Used to build /lib/firmware/skl_n88l25_m98357a-tplg.bin
+# alsatplg -c skl_n88l25_m98357a-tplg -o skl_n88l25_m98357a-tplg.bin
+# cp skl_n88l25_m98357a-tplg.bin /lib/firmware/ ; chmod +r /lib/firmware/skl_n88l25_m98357a-tplg.bin
+# Requires kernel that builds /usr/lib/modules/5.10.*/kernel/sound/soc/intel/skylake/snd-soc-skl.ko
+# Also an update to the symlink for old firmware
+# cd /lib/firmware/intel && test -f dsp_fw_release_v969.bin && ln -sf dsp_fw_release_v969.bin dsp_fw_release.bin
+# 
+SectionControlMixer {
+	'media0_in mi Switch' {
+		channel {
+			fl.reg -1
+			fr.reg -1
+		}
+		max 1
+		ops.0 {
+			info 64
+			get 64
+			put 64
+		}
+		access.0 'read_write'
+	}
+	'codec0_in mi Switch' {
+		channel {
+			fl.reg -1
+			fr.reg -1
+		}
+		max 1
+		ops.0 {
+			info 64
+			get 64
+			put 64
+		}
+		access.0 'read_write'
+	}
+	'dmic01_hifi_in mi Switch' {
+		channel {
+			fl.reg -1
+			fr.reg -1
+		}
+		max 1
+		ops.0 {
+			info 64
+			get 64
+			put 64
+		}
+		access.0 'read_write'
+	}
+}
+SectionWidget {
+	'media0_in cpr 0' {
+		type 'mixer'
+		no_pm 1
+		event_type 3
+		event_flags 9
+		data 'media0_in cpr 0:tuple0'
+	}
+	'media0_in mi' {
+		type 'pga'
+		no_pm 1
+		subseq 10
+		event_type 4
+		event_flags 9
+		data 'media0_in mi:tuple0'
+	}
+	'media0_out mo' {
+		type 'mixer'
+		no_pm 1
+		subseq 10
+		event_type 1
+		event_flags 15
+		mixer [
+			'media0_in mi Switch'
+			'codec0_in mi Switch'
+			'dmic01_hifi_in mi Switch'
+		]
+		data 'media0_out mo:tuple0'
+	}
+	'media0_out cpr 6' {
+		type 'pga'
+		no_pm 1
+		event_type 4
+		data 'media0_out cpr 6:tuple0'
+	}
+	'codec0_out mo' {
+		type 'mixer'
+		no_pm 1
+		subseq 10
+		event_type 1
+		event_flags 15
+		mixer [
+			'media0_in mi Switch'
+			'codec0_in mi Switch'
+			'dmic01_hifi_in mi Switch'
+		]
+		data 'codec0_out mo:tuple0'
+	}
+	'codec0_out cpr 4' {
+		type 'pga'
+		no_pm 1
+		event_type 4
+		data 'codec0_out cpr 4:tuple0'
+	}
+	'codec0_out' {
+		type 'aif_out'
+		no_pm 1
+	}
+	'codec1_out mo' {
+		type 'mixer'
+		no_pm 1
+		subseq 10
+		event_type 1
+		event_flags 15
+		mixer [
+			'media0_in mi Switch'
+			'codec0_in mi Switch'
+			'dmic01_hifi_in mi Switch'
+		]
+		data 'codec1_out mo:tuple0'
+	}
+	'codec1_out cpr 5' {
+		type 'pga'
+		no_pm 1
+		event_type 4
+		data 'codec1_out cpr 5:tuple0'
+	}
+	'codec1_out' {
+		type 'aif_out'
+		no_pm 1
+	}
+	'codec0_in cpr 1' {
+		type 'mixer'
+		no_pm 1
+		event_type 3
+		event_flags 9
+		data 'codec0_in cpr 1:tuple0'
+	}
+	'codec0_in mi' {
+		type 'pga'
+		no_pm 1
+		subseq 10
+		event_type 4
+		event_flags 9
+		data 'codec0_in mi:tuple0'
+	}
+	'codec0_in' {
+		type 'aif_in'
+		no_pm 1
+	}
+	'dmic01_hifi_in cpr 3' {
+		type 'mixer'
+		no_pm 1
+		event_type 3
+		event_flags 9
+		data 'dmic01_hifi_in cpr 3:tuple0'
+	}
+	'dmic01_hifi_in mi' {
+		type 'pga'
+		no_pm 1
+		subseq 10
+		event_type 4
+		event_flags 9
+		data 'dmic01_hifi_in mi:tuple0'
+	}
+	'dmic01_hifi' {
+		type 'aif_in'
+		no_pm 1
+	}
+	'hdmi1_pt_out cpr 7' {
+		type 'mixer'
+		no_pm 1
+		event_type 3
+		event_flags 9
+		data 'hdmi1_pt_out cpr 7:tuple0'
+	}
+	'hdmi1_pt_out cpr 8' {
+		type 'pga'
+		no_pm 1
+		event_type 4
+		data 'hdmi1_pt_out cpr 8:tuple0'
+	}
+	'iDisp1_out' {
+		type 'aif_out'
+		no_pm 1
+	}
+	'kpd_in cpr 9' {
+		type 'mixer'
+		no_pm 1
+		event_type 3
+		event_flags 9
+		data 'kpd_in cpr 9:tuple0'
+	}
+	'kpd_in mic_select 0' {
+		type 'pga'
+		no_pm 1
+		event_type 4
+		data 'kpd_in mic_select 0:tuple0'
+	}
+	'kpd_in kpb 0' {
+		type 'pga'
+		no_pm 1
+		event_type 4
+		event_flags 9
+		data 'kpd_in kpb 0:tuple0'
+	}
+	'media2_out cpr 10' {
+		type 'mixer'
+		no_pm 1
+		subseq 10
+		event_type 1
+		event_flags 15
+		data 'media2_out cpr 10:tuple0'
+	}
+	'media2_out cpr 11' {
+		type 'pga'
+		no_pm 1
+		event_type 4
+		data 'media2_out cpr 11:tuple0'
+	}
+	'hwd_in cpr 12' {
+		type 'mixer'
+		no_pm 1
+		event_type 1
+		event_flags 15
+		data 'hwd_in cpr 12:tuple0'
+	}
+	'hwd_in hwd 0' {
+		type 'pga'
+		no_pm 1
+		event_type 4
+		data 'hwd_in hwd 0:tuple0'
+	}
+	'hwd_in sink' {
+		type 'output'
+		no_pm 1
+	}
+	'mch_cap_in cpr 15' {
+		type 'mixer'
+		no_pm 1
+		event_type 3
+		event_flags 9
+		data 'mch_cap_in cpr 15:tuple0'
+	}
+	'mch_cap_in cpr 16' {
+		type 'pga'
+		no_pm 1
+		event_type 4
+		data 'mch_cap_in cpr 16:tuple0'
+	}
+	'hdmi2_pt_out cpr 13' {
+		type 'mixer'
+		no_pm 1
+		event_type 3
+		event_flags 9
+		data 'hdmi2_pt_out cpr 13:tuple0'
+	}
+	'hdmi2_pt_out cpr 14' {
+		type 'pga'
+		no_pm 1
+		event_type 4
+		data 'hdmi2_pt_out cpr 14:tuple0'
+	}
+	'iDisp2_out' {
+		type 'aif_out'
+		no_pm 1
+	}
+	'hdmi3_pt_out cpr 17' {
+		type 'mixer'
+		no_pm 1
+		event_type 3
+		event_flags 9
+		data 'hdmi3_pt_out cpr 17:tuple0'
+	}
+	'hdmi3_pt_out cpr 18' {
+		type 'pga'
+		no_pm 1
+		event_type 4
+		data 'hdmi3_pt_out cpr 18:tuple0'
+	}
+	'iDisp3_out' {
+		type 'aif_out'
+		no_pm 1
+	}
+}
+SectionData {
+	'media0_in cpr 0:tuple0'.tuples 'media0_in cpr 0:tuple0'
+	'media0_in mi:tuple0'.tuples 'media0_in mi:tuple0'
+	'media0_out mo:tuple0'.tuples 'media0_out mo:tuple0'
+	'media0_out cpr 6:tuple0'.tuples 'media0_out cpr 6:tuple0'
+	'codec0_out mo:tuple0'.tuples 'codec0_out mo:tuple0'
+	'codec0_out cpr 4:tuple0'.tuples 'codec0_out cpr 4:tuple0'
+	'codec1_out mo:tuple0'.tuples 'codec1_out mo:tuple0'
+	'codec1_out cpr 5:tuple0'.tuples 'codec1_out cpr 5:tuple0'
+	'codec0_in cpr 1:tuple0'.tuples 'codec0_in cpr 1:tuple0'
+	'codec0_in mi:tuple0'.tuples 'codec0_in mi:tuple0'
+	'dmic01_hifi_in cpr 3:tuple0'.tuples 'dmic01_hifi_in cpr 3:tuple0'
+	'dmic01_hifi_in mi:tuple0'.tuples 'dmic01_hifi_in mi:tuple0'
+	'hdmi1_pt_out cpr 7:tuple0'.tuples 'hdmi1_pt_out cpr 7:tuple0'
+	'hdmi1_pt_out cpr 8:tuple0'.tuples 'hdmi1_pt_out cpr 8:tuple0'
+	'kpd_in cpr 9:tuple0'.tuples 'kpd_in cpr 9:tuple0'
+	'kpd_in mic_select 0:tuple0'.tuples 'kpd_in mic_select 0:tuple0'
+	'kpd_in kpb 0:tuple0'.tuples 'kpd_in kpb 0:tuple0'
+	'media2_out cpr 10:tuple0'.tuples 'media2_out cpr 10:tuple0'
+	'media2_out cpr 11:tuple0'.tuples 'media2_out cpr 11:tuple0'
+	'hwd_in cpr 12:tuple0'.tuples 'hwd_in cpr 12:tuple0'
+	'hwd_in hwd 0:tuple0'.tuples 'hwd_in hwd 0:tuple0'
+	'mch_cap_in cpr 15:tuple0'.tuples 'mch_cap_in cpr 15:tuple0'
+	'mch_cap_in cpr 16:tuple0'.tuples 'mch_cap_in cpr 16:tuple0'
+	'hdmi2_pt_out cpr 13:tuple0'.tuples 'hdmi2_pt_out cpr 13:tuple0'
+	'hdmi2_pt_out cpr 14:tuple0'.tuples 'hdmi2_pt_out cpr 14:tuple0'
+	'hdmi3_pt_out cpr 17:tuple0'.tuples 'hdmi3_pt_out cpr 17:tuple0'
+	'hdmi3_pt_out cpr 18:tuple0'.tuples 'hdmi3_pt_out cpr 18:tuple0'
+}
+SectionVendorTokens {
+	'media0_in cpr 0' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'media0_in mi' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'media0_out mo' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'media0_out cpr 6' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'codec0_out mo' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'codec0_out cpr 4' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'codec1_out mo' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'codec1_out cpr 5' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'codec0_in cpr 1' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'codec0_in mi' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'dmic01_hifi_in cpr 3' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'dmic01_hifi_in mi' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'hdmi1_pt_out cpr 7' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'hdmi1_pt_out cpr 8' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'kpd_in cpr 9' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'kpd_in mic_select 0' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'kpd_in kpb 0' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'media2_out cpr 10' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'media2_out cpr 11' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'hwd_in cpr 12' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'hwd_in hwd 0' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'mch_cap_in cpr 15' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'mch_cap_in cpr 16' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'hdmi2_pt_out cpr 13' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'hdmi2_pt_out cpr 14' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'hdmi3_pt_out cpr 17' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+	'hdmi3_pt_out cpr 18' {
+		token2 2
+		token3 3
+		token17 17
+		token1 1
+		token4 4
+		token5 5
+		token8 8
+		token9 9
+		token6 6
+		token7 7
+		token10 10
+		token11 11
+		token12 12
+		token13 13
+		token15 15
+		token14 14
+		token16 16
+		token18 18
+		token19 19
+		token20 20
+		token21 21
+		token22 22
+		token23 23
+		token24 24
+		token25 25
+		token26 26
+		token27 27
+		token28 28
+		token44 44
+		token29 29
+		token30 30
+		token31 31
+		token32 32
+		token33 33
+		token35 35
+		token36 36
+		token37 37
+		token34 34
+		token38 38
+		token39 39
+	}
+}
+SectionVendorTuples {
+	'media0_in cpr 0:tuple0' {
+		tokens 'media0_in cpr 0'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 508
+			03_uuid.token1 '83:0c:a0:9b:12:ca:83:4a:94:3c:1f:a2:e8:2f:9d:da'
+			04_byte {
+				token4 0
+				token5 0
+				token8 1
+				token9 2
+				token6 1
+				token7 1
+				token10 0
+				token11 0
+				token12 1
+				token13 1
+				token15 1
+				token14 5
+			}
+			05_short.token16 0
+			06_word {
+				token18 100000
+				token19 0
+				token20 384
+				token21 384
+				token22 -1
+				token23 0
+				token24 0
+				token25 1
+				token26 1
+				token27 0
+				token28 2
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			08_word {
+				token29 1
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			09_word {
+				token29 17
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			10_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			11_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+			12_word {
+				token29 17
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'media0_in mi:tuple0' {
+		tokens 'media0_in mi'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 412
+			03_uuid.token1 'b2:6e:65:39:71:3b:49:40:8d:3f:f9:2c:d5:c4:3c:09'
+			04_byte {
+				token4 0
+				token5 0
+				token8 1
+				token9 1
+				token6 1
+				token7 1
+				token10 0
+				token11 0
+				token12 0
+				token13 0
+				token15 1
+				token14 6
+			}
+			05_short.token16 0
+			06_word {
+				token18 100000
+				token19 0
+				token20 384
+				token21 384
+				token22 -1
+				token23 0
+				token24 0
+				token25 1
+				token26 1
+				token27 0
+				token28 2
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			08_word {
+				token29 1
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			09_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			10_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'media0_out mo:tuple0' {
+		tokens 'media0_out mo'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 1084
+			03_uuid.token1 '5a:50:56:3c:d7:24:8f:41:bd:dc:c1:f5:a3:ac:2a:e0'
+			04_byte {
+				token4 0
+				token5 0
+				token8 8
+				token9 1
+				token6 1
+				token7 1
+				token10 0
+				token11 0
+				token12 0
+				token13 0
+				token15 2
+				token14 6
+			}
+			05_short.token16 2
+			06_word {
+				token18 100000
+				token19 0
+				token20 384
+				token21 384
+				token22 -1
+				token23 0
+				token24 0
+				token25 2
+				token26 1
+				token27 0
+				token28 2
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			08_word {
+				token29 16
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			09_word {
+				token29 32
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			10_word {
+				token29 48
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			11_word {
+				token29 64
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			12_word {
+				token29 80
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			13_word {
+				token29 96
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			14_word {
+				token29 112
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			15_word {
+				token29 1
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			16_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			17_word {
+				token29 16
+				token38 0
+				token39 0
+			}
+			18_word {
+				token29 32
+				token38 0
+				token39 0
+			}
+			19_word {
+				token29 48
+				token38 0
+				token39 0
+			}
+			20_word {
+				token29 64
+				token38 0
+				token39 0
+			}
+			21_word {
+				token29 80
+				token38 0
+				token39 0
+			}
+			22_word {
+				token29 96
+				token38 0
+				token39 0
+			}
+			23_word {
+				token29 112
+				token38 0
+				token39 0
+			}
+			24_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'media0_out cpr 6:tuple0' {
+		tokens 'media0_out cpr 6'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 508
+			03_uuid.token1 '83:0c:a0:9b:12:ca:83:4a:94:3c:1f:a2:e8:2f:9d:da'
+			04_byte {
+				token4 0
+				token5 0
+				token8 1
+				token9 2
+				token6 1
+				token7 1
+				token10 0
+				token11 0
+				token12 1
+				token13 0
+				token15 2
+				token14 5
+			}
+			05_short.token16 6
+			06_word {
+				token18 100000
+				token19 0
+				token20 384
+				token21 384
+				token22 -1
+				token23 0
+				token24 0
+				token25 2
+				token26 1
+				token27 0
+				token28 2
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			08_word {
+				token29 1
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			09_word {
+				token29 17
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			10_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			11_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+			12_word {
+				token29 17
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'codec0_out mo:tuple0' {
+		tokens 'codec0_out mo'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 1084
+			03_uuid.token1 '5a:50:56:3c:d7:24:8f:41:bd:dc:c1:f5:a3:ac:2a:e0'
+			04_byte {
+				token4 0
+				token5 0
+				token8 8
+				token9 1
+				token6 1
+				token7 1
+				token10 0
+				token11 0
+				token12 0
+				token13 0
+				token15 1
+				token14 6
+			}
+			05_short.token16 0
+			06_word {
+				token18 100000
+				token19 0
+				token20 384
+				token21 384
+				token22 -1
+				token23 0
+				token24 0
+				token25 3
+				token26 2
+				token27 0
+				token28 4
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			08_word {
+				token29 16
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			09_word {
+				token29 32
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			10_word {
+				token29 48
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			11_word {
+				token29 64
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			12_word {
+				token29 80
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			13_word {
+				token29 96
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			14_word {
+				token29 112
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			15_word {
+				token29 1
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			16_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			17_word {
+				token29 16
+				token38 0
+				token39 0
+			}
+			18_word {
+				token29 32
+				token38 0
+				token39 0
+			}
+			19_word {
+				token29 48
+				token38 0
+				token39 0
+			}
+			20_word {
+				token29 64
+				token38 0
+				token39 0
+			}
+			21_word {
+				token29 80
+				token38 0
+				token39 0
+			}
+			22_word {
+				token29 96
+				token38 0
+				token39 0
+			}
+			23_word {
+				token29 112
+				token38 0
+				token39 0
+			}
+			24_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'codec0_out cpr 4:tuple0' {
+		tokens 'codec0_out cpr 4'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 508
+			03_uuid.token1 '83:0c:a0:9b:12:ca:83:4a:94:3c:1f:a2:e8:2f:9d:da'
+			04_byte {
+				token4 0
+				token5 0
+				token8 1
+				token9 2
+				token6 1
+				token7 1
+				token10 0
+				token11 0
+				token12 1
+				token13 2
+				token15 1
+				token14 2
+			}
+			05_short.token16 4
+			06_word {
+				token18 100000
+				token19 0
+				token20 384
+				token21 384
+				token22 0
+				token23 0
+				token24 0
+				token25 3
+				token26 2
+				token27 0
+				token28 4
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 2
+				token31 48000
+				token32 32
+				token33 24
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			08_word {
+				token29 1
+				token30 2
+				token31 48000
+				token32 32
+				token33 16
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			09_word {
+				token29 17
+				token30 2
+				token31 48000
+				token32 32
+				token33 16
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			10_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			11_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+			12_word {
+				token29 17
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'codec1_out mo:tuple0' {
+		tokens 'codec1_out mo'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 1084
+			03_uuid.token1 '5a:50:56:3c:d7:24:8f:41:bd:dc:c1:f5:a3:ac:2a:e0'
+			04_byte {
+				token4 0
+				token5 0
+				token8 8
+				token9 1
+				token6 1
+				token7 1
+				token10 0
+				token11 0
+				token12 0
+				token13 0
+				token15 1
+				token14 6
+			}
+			05_short.token16 1
+			06_word {
+				token18 100000
+				token19 0
+				token20 384
+				token21 384
+				token22 -1
+				token23 0
+				token24 0
+				token25 4
+				token26 2
+				token27 0
+				token28 2
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			08_word {
+				token29 16
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			09_word {
+				token29 32
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			10_word {
+				token29 48
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			11_word {
+				token29 64
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			12_word {
+				token29 80
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			13_word {
+				token29 96
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			14_word {
+				token29 112
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			15_word {
+				token29 1
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			16_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			17_word {
+				token29 16
+				token38 0
+				token39 0
+			}
+			18_word {
+				token29 32
+				token38 0
+				token39 0
+			}
+			19_word {
+				token29 48
+				token38 0
+				token39 0
+			}
+			20_word {
+				token29 64
+				token38 0
+				token39 0
+			}
+			21_word {
+				token29 80
+				token38 0
+				token39 0
+			}
+			22_word {
+				token29 96
+				token38 0
+				token39 0
+			}
+			23_word {
+				token29 112
+				token38 0
+				token39 0
+			}
+			24_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'codec1_out cpr 5:tuple0' {
+		tokens 'codec1_out cpr 5'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 508
+			03_uuid.token1 '83:0c:a0:9b:12:ca:83:4a:94:3c:1f:a2:e8:2f:9d:da'
+			04_byte {
+				token4 0
+				token5 0
+				token8 1
+				token9 2
+				token6 1
+				token7 1
+				token10 2
+				token11 0
+				token12 1
+				token13 2
+				token15 1
+				token14 2
+			}
+			05_short.token16 5
+			06_word {
+				token18 100000
+				token19 0
+				token20 384
+				token21 384
+				token22 1
+				token23 0
+				token24 0
+				token25 4
+				token26 2
+				token27 0
+				token28 2
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 2
+				token31 48000
+				token32 32
+				token33 24
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			08_word {
+				token29 1
+				token30 2
+				token31 48000
+				token32 32
+				token33 24
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			09_word {
+				token29 17
+				token30 2
+				token31 48000
+				token32 32
+				token33 24
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			10_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			11_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+			12_word {
+				token29 17
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'codec0_in cpr 1:tuple0' {
+		tokens 'codec0_in cpr 1'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 508
+			03_uuid.token1 '83:0c:a0:9b:12:ca:83:4a:94:3c:1f:a2:e8:2f:9d:da'
+			04_byte {
+				token4 0
+				token5 0
+				token8 1
+				token9 2
+				token6 1
+				token7 1
+				token10 0
+				token11 0
+				token12 1
+				token13 2
+				token15 2
+				token14 2
+			}
+			05_short.token16 1
+			06_word {
+				token18 100000
+				token19 0
+				token20 384
+				token21 384
+				token22 1
+				token23 0
+				token24 0
+				token25 5
+				token26 2
+				token27 0
+				token28 2
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 2
+				token31 48000
+				token32 32
+				token33 24
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			08_word {
+				token29 1
+				token30 2
+				token31 48000
+				token32 32
+				token33 24
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			09_word {
+				token29 17
+				token30 2
+				token31 48000
+				token32 32
+				token33 24
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			10_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			11_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+			12_word {
+				token29 17
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'codec0_in mi:tuple0' {
+		tokens 'codec0_in mi'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 412
+			03_uuid.token1 'b2:6e:65:39:71:3b:49:40:8d:3f:f9:2c:d5:c4:3c:09'
+			04_byte {
+				token4 0
+				token5 0
+				token8 1
+				token9 1
+				token6 1
+				token7 1
+				token10 0
+				token11 0
+				token12 0
+				token13 0
+				token15 2
+				token14 6
+			}
+			05_short.token16 1
+			06_word {
+				token18 100000
+				token19 0
+				token20 384
+				token21 384
+				token22 -1
+				token23 0
+				token24 0
+				token25 5
+				token26 2
+				token27 0
+				token28 2
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			08_word {
+				token29 1
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			09_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			10_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'dmic01_hifi_in cpr 3:tuple0' {
+		tokens 'dmic01_hifi_in cpr 3'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 508
+			03_uuid.token1 '83:0c:a0:9b:12:ca:83:4a:94:3c:1f:a2:e8:2f:9d:da'
+			04_byte {
+				token4 0
+				token5 0
+				token8 1
+				token9 2
+				token6 1
+				token7 1
+				token10 0
+				token11 0
+				token12 1
+				token13 2
+				token15 2
+				token14 1
+			}
+			05_short.token16 3
+			06_word {
+				token18 100000
+				token19 0
+				token20 384
+				token21 384
+				token22 0
+				token23 4
+				token24 4
+				token25 6
+				token26 2
+				token27 0
+				token28 2
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			08_word {
+				token29 1
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			09_word {
+				token29 17
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			10_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			11_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+			12_word {
+				token29 17
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'dmic01_hifi_in mi:tuple0' {
+		tokens 'dmic01_hifi_in mi'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 412
+			03_uuid.token1 'b2:6e:65:39:71:3b:49:40:8d:3f:f9:2c:d5:c4:3c:09'
+			04_byte {
+				token4 0
+				token5 0
+				token8 1
+				token9 1
+				token6 1
+				token7 1
+				token10 0
+				token11 0
+				token12 0
+				token13 0
+				token15 2
+				token14 6
+			}
+			05_short.token16 3
+			06_word {
+				token18 100000
+				token19 0
+				token20 384
+				token21 384
+				token22 -1
+				token23 0
+				token24 0
+				token25 6
+				token26 2
+				token27 0
+				token28 2
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			08_word {
+				token29 1
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			09_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			10_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'hdmi1_pt_out cpr 7:tuple0' {
+		tokens 'hdmi1_pt_out cpr 7'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 508
+			03_uuid.token1 '83:0c:a0:9b:12:ca:83:4a:94:3c:1f:a2:e8:2f:9d:da'
+			04_byte {
+				token4 0
+				token5 0
+				token8 1
+				token9 2
+				token6 1
+				token7 1
+				token10 0
+				token11 0
+				token12 1
+				token13 1
+				token15 1
+				token14 5
+			}
+			05_short.token16 7
+			06_word {
+				token18 100000
+				token19 0
+				token20 384
+				token21 384
+				token22 -1
+				token23 7
+				token24 0
+				token25 7
+				token26 1
+				token27 0
+				token28 2
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			08_word {
+				token29 1
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			09_word {
+				token29 17
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			10_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			11_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+			12_word {
+				token29 17
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'hdmi1_pt_out cpr 8:tuple0' {
+		tokens 'hdmi1_pt_out cpr 8'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 508
+			03_uuid.token1 '83:0c:a0:9b:12:ca:83:4a:94:3c:1f:a2:e8:2f:9d:da'
+			04_byte {
+				token4 0
+				token5 0
+				token8 1
+				token9 2
+				token6 1
+				token7 1
+				token10 0
+				token11 0
+				token12 1
+				token13 1
+				token15 1
+				token14 4
+			}
+			05_short.token16 8
+			06_word {
+				token18 100000
+				token19 0
+				token20 384
+				token21 384
+				token22 -1
+				token23 7
+				token24 0
+				token25 7
+				token26 1
+				token27 0
+				token28 2
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 2
+				token31 48000
+				token32 32
+				token33 24
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			08_word {
+				token29 1
+				token30 2
+				token31 48000
+				token32 32
+				token33 24
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			09_word {
+				token29 17
+				token30 2
+				token31 48000
+				token32 32
+				token33 24
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			10_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			11_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+			12_word {
+				token29 17
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'kpd_in cpr 9:tuple0' {
+		tokens 'kpd_in cpr 9'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 508
+			03_uuid.token1 '83:0c:a0:9b:12:ca:83:4a:94:3c:1f:a2:e8:2f:9d:da'
+			04_byte {
+				token4 0
+				token5 0
+				token8 1
+				token9 2
+				token6 1
+				token7 1
+				token10 1
+				token11 0
+				token12 1
+				token13 2
+				token15 2
+				token14 1
+			}
+			05_short.token16 9
+			06_word {
+				token18 2999
+				token19 0
+				token20 64
+				token21 64
+				token22 0
+				token23 0
+				token24 0
+				token25 8
+				token26 2
+				token27 0
+				token28 5
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 2
+				token31 16000
+				token32 16
+				token33 16
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			08_word {
+				token29 1
+				token30 2
+				token31 16000
+				token32 16
+				token33 16
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			09_word {
+				token29 17
+				token30 2
+				token31 16000
+				token32 16
+				token33 16
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			10_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			11_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+			12_word {
+				token29 17
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'kpd_in mic_select 0:tuple0' {
+		tokens 'kpd_in mic_select 0'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 412
+			03_uuid.token1 'c1:92:fe:32:17:1e:c2:4f:97:58:c7:f3:54:2e:98:0a'
+			04_byte {
+				token4 1
+				token5 0
+				token8 1
+				token9 1
+				token6 1
+				token7 1
+				token10 0
+				token11 0
+				token12 5
+				token13 0
+				token15 2
+				token14 6
+			}
+			05_short.token16 0
+			06_word {
+				token18 965
+				token19 0
+				token20 32
+				token21 64
+				token22 -1
+				token23 0
+				token24 0
+				token25 8
+				token26 2
+				token27 0
+				token28 5
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 2
+				token31 16000
+				token32 16
+				token33 16
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			08_word {
+				token29 1
+				token30 1
+				token31 16000
+				token32 16
+				token33 16
+				token35 0
+				token36 0
+				token37 0xfffffff0
+				token34 0
+			}
+			09_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			10_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'kpd_in kpb 0:tuple0' {
+		tokens 'kpd_in kpb 0'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 508
+			03_uuid.token1 '32:cb:a0:a8:77:4a:b1:4d:85:c7:53:d7:ee:07:bc:e6'
+			04_byte {
+				token4 0
+				token5 0
+				token8 1
+				token9 2
+				token6 1
+				token7 0
+				token10 0
+				token11 0
+				token12 5
+				token13 0
+				token15 2
+				token14 6
+			}
+			05_short.token16 0
+			06_word {
+				token18 409
+				token19 0
+				token20 32
+				token21 32
+				token22 -1
+				token23 0
+				token24 0
+				token25 8
+				token26 2
+				token27 0
+				token28 5
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 1
+				token31 16000
+				token32 16
+				token33 16
+				token35 0
+				token36 0
+				token37 0xfffffff0
+				token34 0
+			}
+			08_word {
+				token29 1
+				token30 1
+				token31 16000
+				token32 16
+				token33 16
+				token35 0
+				token36 0
+				token37 0xfffffff0
+				token34 0
+			}
+			09_word {
+				token29 17
+				token30 1
+				token31 16000
+				token32 16
+				token33 16
+				token35 0
+				token36 0
+				token37 0xfffffff0
+				token34 0
+			}
+			10_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			11_word {
+				token29 1
+				token38 3
+				token39 12
+			}
+			12_word {
+				token29 17
+				token38 3
+				token39 10
+			}
+		}
+	}
+	'media2_out cpr 10:tuple0' {
+		tokens 'media2_out cpr 10'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 508
+			03_uuid.token1 '83:0c:a0:9b:12:ca:83:4a:94:3c:1f:a2:e8:2f:9d:da'
+			04_byte {
+				token4 0
+				token5 0
+				token8 1
+				token9 2
+				token6 0
+				token7 1
+				token10 0
+				token11 0
+				token12 1
+				token13 0
+				token15 2
+				token14 6
+			}
+			05_short.token16 10
+			06_word {
+				token18 2000
+				token19 0
+				token20 32
+				token21 32
+				token22 -1
+				token23 0
+				token24 0
+				token25 9
+				token26 1
+				token27 0
+				token28 2
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 1
+				token31 16000
+				token32 16
+				token33 16
+				token35 0
+				token36 0
+				token37 0xfffffff0
+				token34 0
+			}
+			08_word {
+				token29 1
+				token30 1
+				token31 16000
+				token32 16
+				token33 16
+				token35 0
+				token36 0
+				token37 0xfffffff0
+				token34 0
+			}
+			09_word {
+				token29 17
+				token30 1
+				token31 16000
+				token32 16
+				token33 16
+				token35 0
+				token36 0
+				token37 0xfffffff0
+				token34 0
+			}
+			10_word {
+				token29 0
+				token38 7
+				token39 0
+			}
+			11_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+			12_word {
+				token29 17
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'media2_out cpr 11:tuple0' {
+		tokens 'media2_out cpr 11'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 508
+			03_uuid.token1 '83:0c:a0:9b:12:ca:83:4a:94:3c:1f:a2:e8:2f:9d:da'
+			04_byte {
+				token4 0
+				token5 0
+				token8 1
+				token9 2
+				token6 1
+				token7 1
+				token10 0
+				token11 0
+				token12 1
+				token13 0
+				token15 2
+				token14 5
+			}
+			05_short.token16 11
+			06_word {
+				token18 2999
+				token19 0
+				token20 32
+				token21 32
+				token22 -1
+				token23 0
+				token24 0
+				token25 9
+				token26 1
+				token27 0
+				token28 2
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 1
+				token31 16000
+				token32 16
+				token33 16
+				token35 0
+				token36 0
+				token37 0xfffffff0
+				token34 0
+			}
+			08_word {
+				token29 1
+				token30 1
+				token31 16000
+				token32 16
+				token33 16
+				token35 0
+				token36 0
+				token37 0xfffffff0
+				token34 0
+			}
+			09_word {
+				token29 17
+				token30 1
+				token31 16000
+				token32 16
+				token33 16
+				token35 0
+				token36 0
+				token37 0xfffffff0
+				token34 0
+			}
+			10_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			11_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+			12_word {
+				token29 17
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'hwd_in cpr 12:tuple0' {
+		tokens 'hwd_in cpr 12'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 508
+			03_uuid.token1 '83:0c:a0:9b:12:ca:83:4a:94:3c:1f:a2:e8:2f:9d:da'
+			04_byte {
+				token4 0
+				token5 0
+				token8 1
+				token9 2
+				token6 1
+				token7 1
+				token10 0
+				token11 0
+				token12 1
+				token13 2
+				token15 2
+				token14 6
+			}
+			05_short.token16 12
+			06_word {
+				token18 2000
+				token19 0
+				token20 32
+				token21 32
+				token22 -1
+				token23 0
+				token24 0
+				token25 10
+				token26 2
+				token27 0
+				token28 5
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 1
+				token31 16000
+				token32 16
+				token33 16
+				token35 0
+				token36 0
+				token37 0xfffffff0
+				token34 0
+			}
+			08_word {
+				token29 1
+				token30 1
+				token31 16000
+				token32 16
+				token33 16
+				token35 0
+				token36 0
+				token37 0xfffffff0
+				token34 0
+			}
+			09_word {
+				token29 17
+				token30 1
+				token31 16000
+				token32 16
+				token33 16
+				token35 0
+				token36 0
+				token37 0xfffffff0
+				token34 0
+			}
+			10_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			11_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+			12_word {
+				token29 17
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'hwd_in hwd 0:tuple0' {
+		tokens 'hwd_in hwd 0'
+		tuples {
+			0_byte.token2 1
+			1_byte.token3 0
+			2_short.token17 316
+			3_uuid.token1 'b8:29:8a:57:90:08:6f:44:a8:0a:2f:e2:02:ae:0d:ba'
+			4_byte {
+				token4 0
+				token5 0
+				token8 1
+				token9 0
+				token6 1
+				token7 1
+				token10 0
+				token11 0
+				token12 4
+				token13 0
+				token15 2
+				token14 6
+			}
+			5_short.token16 0
+			6_word {
+				token18 65000
+				token19 13
+				token20 32
+				token21 320
+				token22 -1
+				token23 0
+				token24 0
+				token25 10
+				token26 0
+				token27 0
+				token28 5
+				token44 0
+			}
+			7_word {
+				token29 0
+				token30 1
+				token31 16000
+				token32 16
+				token33 16
+				token35 0
+				token36 0
+				token37 0xfffffff0
+				token34 0
+			}
+			8_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'mch_cap_in cpr 15:tuple0' {
+		tokens 'mch_cap_in cpr 15'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 508
+			03_uuid.token1 '83:0c:a0:9b:12:ca:83:4a:94:3c:1f:a2:e8:2f:9d:da'
+			04_byte {
+				token4 0
+				token5 0
+				token8 1
+				token9 2
+				token6 1
+				token7 1
+				token10 0
+				token11 0
+				token12 1
+				token13 2
+				token15 2
+				token14 1
+			}
+			05_short.token16 15
+			06_word {
+				token18 200000
+				token19 0
+				token20 384
+				token21 384
+				token22 0
+				token23 4
+				token24 1
+				token25 11
+				token26 2
+				token27 0
+				token28 2
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			08_word {
+				token29 1
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			09_word {
+				token29 17
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			10_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			11_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+			12_word {
+				token29 17
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'mch_cap_in cpr 16:tuple0' {
+		tokens 'mch_cap_in cpr 16'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 508
+			03_uuid.token1 '83:0c:a0:9b:12:ca:83:4a:94:3c:1f:a2:e8:2f:9d:da'
+			04_byte {
+				token4 0
+				token5 0
+				token8 1
+				token9 2
+				token6 1
+				token7 1
+				token10 0
+				token11 0
+				token12 1
+				token13 2
+				token15 2
+				token14 5
+			}
+			05_short.token16 16
+			06_word {
+				token18 100000
+				token19 0
+				token20 384
+				token21 384
+				token22 -1
+				token23 4
+				token24 1
+				token25 11
+				token26 2
+				token27 0
+				token28 2
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			08_word {
+				token29 1
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			09_word {
+				token29 17
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			10_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			11_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+			12_word {
+				token29 17
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'hdmi2_pt_out cpr 13:tuple0' {
+		tokens 'hdmi2_pt_out cpr 13'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 508
+			03_uuid.token1 '83:0c:a0:9b:12:ca:83:4a:94:3c:1f:a2:e8:2f:9d:da'
+			04_byte {
+				token4 0
+				token5 0
+				token8 1
+				token9 2
+				token6 1
+				token7 1
+				token10 0
+				token11 0
+				token12 1
+				token13 1
+				token15 1
+				token14 5
+			}
+			05_short.token16 13
+			06_word {
+				token18 100000
+				token19 0
+				token20 384
+				token21 384
+				token22 -1
+				token23 7
+				token24 0
+				token25 12
+				token26 1
+				token27 0
+				token28 2
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			08_word {
+				token29 1
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			09_word {
+				token29 17
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			10_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			11_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+			12_word {
+				token29 17
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'hdmi2_pt_out cpr 14:tuple0' {
+		tokens 'hdmi2_pt_out cpr 14'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 508
+			03_uuid.token1 '83:0c:a0:9b:12:ca:83:4a:94:3c:1f:a2:e8:2f:9d:da'
+			04_byte {
+				token4 0
+				token5 0
+				token8 1
+				token9 2
+				token6 1
+				token7 1
+				token10 0
+				token11 0
+				token12 1
+				token13 1
+				token15 1
+				token14 4
+			}
+			05_short.token16 14
+			06_word {
+				token18 100000
+				token19 0
+				token20 384
+				token21 384
+				token22 -1
+				token23 7
+				token24 0
+				token25 12
+				token26 1
+				token27 0
+				token28 2
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 2
+				token31 48000
+				token32 32
+				token33 24
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			08_word {
+				token29 1
+				token30 2
+				token31 48000
+				token32 32
+				token33 24
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			09_word {
+				token29 17
+				token30 2
+				token31 48000
+				token32 32
+				token33 24
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			10_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			11_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+			12_word {
+				token29 17
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'hdmi3_pt_out cpr 17:tuple0' {
+		tokens 'hdmi3_pt_out cpr 17'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 508
+			03_uuid.token1 '83:0c:a0:9b:12:ca:83:4a:94:3c:1f:a2:e8:2f:9d:da'
+			04_byte {
+				token4 0
+				token5 0
+				token8 1
+				token9 2
+				token6 1
+				token7 1
+				token10 0
+				token11 0
+				token12 1
+				token13 1
+				token15 1
+				token14 5
+			}
+			05_short.token16 17
+			06_word {
+				token18 100000
+				token19 0
+				token20 384
+				token21 384
+				token22 -1
+				token23 7
+				token24 0
+				token25 13
+				token26 1
+				token27 0
+				token28 2
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			08_word {
+				token29 1
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			09_word {
+				token29 17
+				token30 2
+				token31 48000
+				token32 32
+				token33 32
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			10_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			11_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+			12_word {
+				token29 17
+				token38 0
+				token39 0
+			}
+		}
+	}
+	'hdmi3_pt_out cpr 18:tuple0' {
+		tokens 'hdmi3_pt_out cpr 18'
+		tuples {
+			00_byte.token2 1
+			01_byte.token3 0
+			02_short.token17 508
+			03_uuid.token1 '83:0c:a0:9b:12:ca:83:4a:94:3c:1f:a2:e8:2f:9d:da'
+			04_byte {
+				token4 0
+				token5 0
+				token8 1
+				token9 2
+				token6 1
+				token7 1
+				token10 0
+				token11 0
+				token12 1
+				token13 1
+				token15 1
+				token14 4
+			}
+			05_short.token16 18
+			06_word {
+				token18 100000
+				token19 0
+				token20 384
+				token21 384
+				token22 -1
+				token23 7
+				token24 0
+				token25 13
+				token26 1
+				token27 0
+				token28 2
+				token44 0
+			}
+			07_word {
+				token29 0
+				token30 2
+				token31 48000
+				token32 32
+				token33 24
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			08_word {
+				token29 1
+				token30 2
+				token31 48000
+				token32 32
+				token33 24
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			09_word {
+				token29 17
+				token30 2
+				token31 48000
+				token32 32
+				token33 24
+				token35 0
+				token36 0
+				token37 0xffffff10
+				token34 1
+			}
+			10_word {
+				token29 0
+				token38 0
+				token39 0
+			}
+			11_word {
+				token29 1
+				token38 0
+				token39 0
+			}
+			12_word {
+				token29 17
+				token38 0
+				token39 0
+			}
+		}
+	}
+}
+SectionGraph.set0 {
+	index 0
+	lines [
+		'media0_in mi, , media0_in cpr 0'
+		'media0_in cpr 0, , System Playback'
+		'media0_out mo, media0_in mi Switch, media0_in mi'
+		'media0_out mo, codec0_in mi Switch, codec0_in mi'
+		'media0_out mo, dmic01_hifi_in mi Switch, dmic01_hifi_in mi'
+		'media0_out cpr 6, , media0_out mo'
+		'System Capture, , media0_out cpr 6'
+		'codec0_out mo, media0_in mi Switch, media0_in mi'
+		'codec0_out mo, codec0_in mi Switch, codec0_in mi'
+		'codec0_out mo, dmic01_hifi_in mi Switch, dmic01_hifi_in mi'
+		'codec0_out cpr 4, , codec0_out mo'
+		'codec0_out, , codec0_out cpr 4'
+		'codec1_out mo, media0_in mi Switch, media0_in mi'
+		'codec1_out mo, codec0_in mi Switch, codec0_in mi'
+		'codec1_out mo, dmic01_hifi_in mi Switch, dmic01_hifi_in mi'
+		'codec1_out cpr 5, , codec1_out mo'
+		'codec1_out, , codec1_out cpr 5'
+		'codec0_in mi, , codec0_in cpr 1'
+		'codec0_in cpr 1, , codec0_in'
+		'dmic01_hifi_in mi, , dmic01_hifi_in cpr 3'
+		'dmic01_hifi_in cpr 3, , dmic01_hifi'
+		'hdmi1_pt_out cpr 8, , hdmi1_pt_out cpr 7'
+		'hdmi1_pt_out cpr 7, , HDMI1 Playback'
+		'iDisp1_out, , hdmi1_pt_out cpr 8'
+		'media2_out cpr 10, , kpd_in kpb 0'
+		'media2_out cpr 11, , hwd_in sink'
+		'hwd_in cpr 12, , kpd_in kpb 0'
+		'kpd_in mic_select 0, , kpd_in cpr 9'
+		'kpd_in kpb 0, , kpd_in mic_select 0'
+		'kpd_in cpr 9, , dmic01_hifi'
+		'media2_out cpr 11, , media2_out cpr 10'
+		'Reference Capture, , media2_out cpr 11'
+		'hwd_in hwd 0, , hwd_in cpr 12'
+		'hwd_in sink, , hwd_in hwd 0'
+		'mch_cap_in cpr 16, , mch_cap_in cpr 15'
+		'DMIC Capture, , mch_cap_in cpr 16'
+		'mch_cap_in cpr 15, , dmic01_hifi'
+		'hdmi2_pt_out cpr 14, , hdmi2_pt_out cpr 13'
+		'hdmi2_pt_out cpr 13, , HDMI2 Playback'
+		'iDisp2_out, , hdmi2_pt_out cpr 14'
+		'hdmi3_pt_out cpr 18, , hdmi3_pt_out cpr 17'
+		'hdmi3_pt_out cpr 17, , HDMI3 Playback'
+		'iDisp3_out, , hdmi3_pt_out cpr 18'
+	]
+}

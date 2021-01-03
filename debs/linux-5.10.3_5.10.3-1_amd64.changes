@@ -1,0 +1,33 @@
+Format: 1.8
+Date: Sun, 27 Dec 2020 14:16:40 -0600
+Source: linux-5.10.3
+Binary: linux-headers-5.10.3 linux-image-5.10.3 linux-libc-dev
+Architecture: amd64
+Version: 5.10.3-1
+Distribution: focal
+Urgency: low
+Maintainer: rferguson <rferguson@cave>
+Changed-By: rferguson <rferguson@cave>
+Description:
+ linux-headers-5.10.3 - Linux kernel headers for 5.10.3 on amd64
+ linux-image-5.10.3 - Linux kernel, version 5.10.3
+ linux-libc-dev - Linux support headers for userspace development
+Changes:
+ linux-5.10.3 (5.10.3-1) focal; urgency=low
+ .
+   * Custom built Linux kernel.
+Checksums-Sha1:
+ 8d2f21b3b8641789d2920bc7979f26de489ae417 5115 linux-5.10.3_5.10.3-1_amd64.buildinfo
+ 24d631c63de9df36173bf3a85db13197c58c20ac 7746128 linux-headers-5.10.3_5.10.3-1_amd64.deb
+ 9bf1002c06400097e9a33a11eb22136e81dce5b1 52643656 linux-image-5.10.3_5.10.3-1_amd64.deb
+ 0fa28fe2a5035b85eb0d52a93e54e2eedeb6a8c4 1135192 linux-libc-dev_5.10.3-1_amd64.deb
+Checksums-Sha256:
+ be4b00c2da26263b1fb75f0bdb46d07465a5e6305f237cf3e3fd5f74200014f8 5115 linux-5.10.3_5.10.3-1_amd64.buildinfo
+ 8b6a7c804f02fa4163a302d1832e297d2cfe526bf451a1cef1282a07893fefe3 7746128 linux-headers-5.10.3_5.10.3-1_amd64.deb
+ ebec46d47fb0246c7d76b7386da79756793ff3ae7f05d988a4495e4a31538442 52643656 linux-image-5.10.3_5.10.3-1_amd64.deb
+ 440c7643933ff789e0f7bc7a45b158bebe8a3068682d8ea49731c7ed490c421b 1135192 linux-libc-dev_5.10.3-1_amd64.deb
+Files:
+ 06154363baf36f8bc8c7d47a0cb04a34 5115 kernel optional linux-5.10.3_5.10.3-1_amd64.buildinfo
+ 8811aad1ccdab3a91978bb1f3d64d4f5 7746128 kernel optional linux-headers-5.10.3_5.10.3-1_amd64.deb
+ f1c16583180b4a1a5470ac43c63532ac 52643656 kernel optional linux-image-5.10.3_5.10.3-1_amd64.deb
+ 3b3a06d3c53ff4c7771723c365790084 1135192 devel optional linux-libc-dev_5.10.3-1_amd64.deb

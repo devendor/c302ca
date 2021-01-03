@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=devendortech modewatcher
+GenericName=devendortech Modewatcher
+Comment=Move the cr302ca to new modes
+Exec=/usr/bin/python3 /home/rferguson/bin/modewatcher.py
+Terminal=false
+Type=Application
+Categories=Utility;
+Keywords=keyboard;accessibility;utility;
+Icon=rotate

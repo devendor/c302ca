@@ -53,7 +53,7 @@ I had a heck of a time getting this to install with an intact bootloader. Milage
         #   ├─vg0-home  253:1    0   14G  0 lvm  /home
         #   └─vg0-swap  253:2    0    4G  0 lvm  [SWAP]
         sudo bash -il
-        sfdisk<<'-END'
+        sfdisk<<-'END'
                 label: gpt
                 label-id: 138A1911-51AC-4B00-BA5A-8E4F1A09FBFD
                 device: /dev/mmcblk0

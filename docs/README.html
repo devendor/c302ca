@@ -85,29 +85,29 @@
 <span class="c1">#   ├─vg0-home  253:1    0   14G  0 lvm  /home</span>
 <span class="c1">#   └─vg0-swap  253:2    0    4G  0 lvm  [SWAP]</span>
 sudo bash -il
-sfdisk&lt;&lt;<span class="s1">&#39;-END&#39;</span>
-        label: gpt
-        label-id: 138A1911-51AC-4B00-BA5A-8E4F1A09FBFD
-        device: /dev/mmcblk0
-        unit: sectors
-        first-lba: <span class="m">34</span>
-        last-lba: <span class="m">122142686</span>
+sfdisk<span class="s">&lt;&lt;-&#39;END&#39;</span>
+<span class="s">        label: gpt</span>
+<span class="s">        label-id: 138A1911-51AC-4B00-BA5A-8E4F1A09FBFD</span>
+<span class="s">        device: /dev/mmcblk0</span>
+<span class="s">        unit: sectors</span>
+<span class="s">        first-lba: 34</span>
+<span class="s">        last-lba: 122142686</span>
 
-        /dev/mmcblk0p1 : <span class="nv">start</span><span class="o">=</span>        <span class="m">4096</span>, <span class="nv">size</span><span class="o">=</span>      <span class="m">262144</span>, <span class="nv">type</span><span class="o">=</span>C12A7328-F81F-11D2-BA4B-00A0C93EC93B, <span class="nv">uuid</span><span class="o">=</span>833E3796-0282-4F67-B0A4-B937D758EF8B, <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;UEFI System&quot;</span>
-        /dev/mmcblk0p2 : <span class="nv">start</span><span class="o">=</span>      <span class="m">268288</span>, <span class="nv">size</span><span class="o">=</span>     <span class="m">2097152</span>, <span class="nv">type</span><span class="o">=</span>0FC63DAF-8483-4772-8E79-3D69D8477DE4, <span class="nv">uuid</span><span class="o">=</span>14459C81-CC21-4516-9C07-45AA6E0C3296, <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;boot&quot;</span>, <span class="nv">attrs</span><span class="o">=</span><span class="s2">&quot;LegacyBIOSBootable&quot;</span>
-        /dev/mmcblk0p3 : <span class="nv">start</span><span class="o">=</span>     <span class="m">2365440</span>, <span class="nv">size</span><span class="o">=</span>   <span class="m">119775232</span>, <span class="nv">type</span><span class="o">=</span>E6D6D379-F507-44C2-A23C-238F2A3DF928, <span class="nv">uuid</span><span class="o">=</span>9AA487E3-1C14-47DB-B03C-075EAABE6AD5, <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;pv1</span>
-<span class="s2">END</span>
-<span class="s2">apt-get update</span>
-<span class="s2">sudo apt-get install lvm2</span>
-<span class="s2">vgcreate vg0 /dev/mmcblk0p3</span>
-<span class="s2">vgchange -a y vg0</span>
-<span class="s2">lvcreate -n swap -L 4G vg0</span>
-<span class="s2">lvcreate -n slash -L 14G vg0</span>
-<span class="s2">lvcreate -n home -L 14G vg0</span>
-<span class="s2">mkfs.ext4 -L slash /dev/mapper/vg0-slash</span>
-<span class="s2">mkfs.ext4 -L home /dev/mapper/vg0-home</span>
-<span class="s2">mkswap -L swap0 /dev/mapper/vg0-swap</span>
-<span class="s2">mkfs.ext4 -L boot /dev/mmcblk0p2</span>
+<span class="s">        /dev/mmcblk0p1 : start=        4096, size=      262144, type=C12A7328-F81F-11D2-BA4B-00A0C93EC93B, uuid=833E3796-0282-4F67-B0A4-B937D758EF8B, name=&quot;UEFI System&quot;</span>
+<span class="s">        /dev/mmcblk0p2 : start=      268288, size=     2097152, type=0FC63DAF-8483-4772-8E79-3D69D8477DE4, uuid=14459C81-CC21-4516-9C07-45AA6E0C3296, name=&quot;boot&quot;, attrs=&quot;LegacyBIOSBootable&quot;</span>
+<span class="s">        /dev/mmcblk0p3 : start=     2365440, size=   119775232, type=E6D6D379-F507-44C2-A23C-238F2A3DF928, uuid=9AA487E3-1C14-47DB-B03C-075EAABE6AD5, name=&quot;pv1</span>
+<span class="s">END</span>
+apt-get update
+sudo apt-get install lvm2
+vgcreate vg0 /dev/mmcblk0p3
+vgchange -a y vg0
+lvcreate -n swap -L 4G vg0
+lvcreate -n slash -L 14G vg0
+lvcreate -n home -L 14G vg0
+mkfs.ext4 -L slash /dev/mapper/vg0-slash
+mkfs.ext4 -L home /dev/mapper/vg0-home
+mkswap -L swap0 /dev/mapper/vg0-swap
+mkfs.ext4 -L boot /dev/mmcblk0p2
 </pre></div>
 </div>
 </li>

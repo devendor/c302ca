@@ -2,7 +2,7 @@
 Ubuntu 20.04 on Asus C302CA Notes
 #################################
 
-Repo `on github`_
+Github `source code`_ and `documentation`_.
 
 What 
 ====
@@ -329,9 +329,10 @@ Please do let me know if you get sound working under SOF or get the little speak
 
 
 .. _third party: https://mrchromebox.tech
-.. _write protect screw: https://google.com/search?q=write+protect+screw+ca
+.. _write protect screw: https://google.com/search?q=write+protect+screw+c302ca
 .. _RMS: https://www.google.com/search?q=Richard+Stallman&tbm=isch
 .. _gravity riding everything: https://www.youtube.com/watch?v=U6XhVj5GF0I
 .. _src/modewatcher.py: https://github.com/devendor/c302ca/blob/main/src/modewatcher.py
 .. _kernel.org: https://kernel.org
-.. _on github: https://github.com/devendor/c302ca
+.. _source code: https://github.com/devendor/c302ca
+.. _documentation: https://devendor.github.io/c302ca/

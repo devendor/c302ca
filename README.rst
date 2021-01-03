@@ -78,7 +78,7 @@ I had a heck of a time getting this to install with an intact bootloader. Milage
 9. Capture some info on your filesystem layout in case you need it. *lsblk -f /dev/mmcblk0* captured in a picture with your phone should do.
 10. Do a *df*. I forget if target is still mounted at this point. If it isn't, you can mount it with something like.
 
-   .. code-block:: shell
+    .. code-block:: shell
 
        mount /dev/mapper/vg0-slash /somepath
        mount /dev/mmcblk0p2 /somepath/boot

@@ -332,6 +332,6 @@ Please do let me know if you get sound working under SOF or get the little speak
 .. _write protect screw: https://google.com/search?q=write+protect+screw+ca
 .. _RMS: https://www.google.com/search?q=Richard+Stallman&tbm=isch
 .. _gravity riding everything: https://www.youtube.com/watch?v=U6XhVj5GF0I
-.. _src/modewatcher.py: https://github.com/devendor/c302ca/src/modwatcher.py
+.. _src/modewatcher.py: https://github.com/devendor/c302ca/blob/main/src/modewatcher.py
 .. _kernel.org: https://kernel.org
 .. _on github: https://github.com/devendor/c302ca

@@ -33,7 +33,9 @@ I had a heck of a time getting this to install with an intact bootloader. Milage
 1. Boot into the live CD and get on the internet.
 2. Temporarily ix screen rotation. Turn the screen upside down, click the drop down at the top (now bottom) right and lock screen rotation.
 3. Optional: setup your paritions to install to in the live cd. I don't think you need to put boot as a primary partition, but it does make fixing boot issues easier.
+
    .. code-block:: shell
+
         # I created something like the following with something like the following.
         # NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
         # mmcblk0       179:8    0 58.2G  0 disk 

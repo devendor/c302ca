@@ -224,13 +224,13 @@ skip to step 8
 
    .. code-block:: shell
 
-     tar -Jxvf ~/Downloads/linux-x.y.z.tar.xz
-     cd linux-x.y.z
-     cp ~/c302ca/src/kernel-config .config
-     make help # in case you are curious.
-     make oldconfig
-     make testconfig
-     make -j2 bindeb-pkg 
+      tar -Jxvf ~/Downloads/linux-x.y.z.tar.xz
+      cd linux-x.y.z
+      cp ~/c302ca/src/kernel-config .config
+      make help # in case you are curious.
+      make oldconfig
+      make testconfig
+      make -j2 bindeb-pkg 
 
 5. Get a pot of coffee. Processors keep getting faster, but the kernel keeps getting more modules and I was too lazy to do much pruning from the distro kitchen sink kernel.
 6. When it is done, if it worked.

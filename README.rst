@@ -76,18 +76,18 @@ I had a heck of a time getting this to install with an intact bootloader. Milage
 7. Install selecting the paritions you just setup for /boot / swap /home and UEFI.
 8. next next finish wait continue instead of rebooting.
 9. Capture some info on your filesystem layout in case you need it. 'lsblk -f /dev/mmcblk0' captured in a picture with your phone should do.
-10. Do a df. I forget if target is still mounted at this point. If it isn't, you can mount it with something like.
+10. Do a 'df'. I forget if target is still mounted at this point. If it isn't, you can mount it with something like.
 
    .. code-block:: shell
 
-      mount /dev/mapper/vg0-slash /somepath
-      mount /dev/mmcblk0p2 /somepath/boot
-      mount /dev/mmcblk0p1 /somepath/efi
-      chroot /somepath
-      mount -t udevtmpfs udev /dev
-      mount -t devpts devpts /dev/pts
-      mount -t proc proc /proc
-      mount -t sysfs sysfs /sys
+       mount /dev/mapper/vg0-slash /somepath
+       mount /dev/mmcblk0p2 /somepath/boot
+       mount /dev/mmcblk0p1 /somepath/efi
+       chroot /somepath
+       mount -t udevtmpfs udev /dev
+       mount -t devpts devpts /dev/pts
+       mount -t proc proc /proc
+       mount -t sysfs sysfs /sys
 
 11. Try to install a bootloader. Is it just me, or do you also resent `RMS`_ for putting out man pages refering you to info pages because he's obsessed with emacs?
 

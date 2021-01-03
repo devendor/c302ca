@@ -223,6 +223,7 @@ skip to step 8
 4. unpack, configure, build.
 
    .. code-block:: shell
+
      tar -Jxvf ~/Downloads/linux-x.y.z.tar.xz
      cd linux-x.y.z
      cp ~/c302ca/src/kernel-config .config

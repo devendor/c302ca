@@ -33,7 +33,7 @@ I had a heck of a time getting this to install with an intact bootloader. Milage
 1. Boot into the live CD and get on the internet.
 2. Temporarily ix screen rotation. Turn the screen upside down, click the drop down at the top (now bottom) right and lock screen rotation.
 3. Optional: setup your paritions to install to in the live cd. I don't think you need to put boot as a primary partition, but it does make fixing boot issues easier.
-   .. code:: shell
+   .. code-block:: shell
         # I created something like the following with something like the following.
         # NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
         # mmcblk0       179:8    0 58.2G  0 disk 
@@ -75,7 +75,7 @@ I had a heck of a time getting this to install with an intact bootloader. Milage
 8. next next finish wait continue instead of rebooting.
 9. Capture some info on your filesystem layout in case you need it. `lsblk -f /dev/mmcblk0` captured in a picture with your phone should do.
 10. Do a df. I forget if target is still mounted at this point. If it isn't, you can mount it with something like.
-   .. code:: shell
+   .. code-block:: shell
       mount /dev/mapper/vg0-slash /somepath
       mount /dev/mmcblk0p2 /somepath/boot
       mount /dev/mmcblk0p1 /somepath/efi
@@ -85,7 +85,7 @@ I had a heck of a time getting this to install with an intact bootloader. Milage
       mount -t proc proc /proc
       mount -t sysfs sysfs /sys
 11. Try to install a bootloader. Is it just me, or do you also resent RMS_ for putting out man pages refering you to info pages because he's obsessed with emacs?
-    .. code:: 
+    .. code-block:: 
         # Edit /etc/default/grub and set the folowing vars
         GRUB_CMDLINE_LINE="acpi_osi=Linux tpm_tis.interupts=0 tpm_tis.force=0"
         GRUB_CMDLINE_LINUX_DEFAULT="i915.enable_guc=2 i915.modeset=1 intel_ide.max_cstate=7 i915.fastboot=1 vt.handoff=7 i915.alpha_support=1 i915.fastboot=1 splash"
@@ -93,7 +93,7 @@ I had a heck of a time getting this to install with an intact bootloader. Milage
         env GRUB_DISABLE_OS_PROBER="true" grub-mkconfig -o /boot/grub/grub.cfg
         grub-install --verbose --target=x86_64-efi
 12. If you can boot, I remembered. If not, try boot from file in the bootmanager or the grub prompt. a grub prompt boot would be something like the following. Then try to fix whatever I remembered incorrectly.
-    .. code:: shell
+    .. code-block:: shell
        linux (hd0,gpt2)/vmlinuz root=/dev/mapper/vg0-slash tmp_tis.interupts=0 tpm_tis.force=0
        initrd (hd0,gpt2)/initrd.img
        boot
@@ -103,7 +103,7 @@ About that screen rotation
 
 If your screen is upside down again, do step 2 above to temporarily fix it then disable iio-sensor-proxy.service.
 
-.. code:: shell
+.. code-block:: shell
    systemctl disable iio-sensor-proxy.service
    systemctl stop iio-sensor-proxy.service
    systemctl mask iio-sensor-proxy.service
@@ -141,7 +141,7 @@ Some of the vars are xinput ids or xrandr display identifiers which you can conf
 .. warning:: Do this as your non-priv user. Commands will call sudo where escalation is needed.
 
 1. Files to install.
-   .. code:: shell
+   .. code-block:: shell
       sudo apt-get update
       sudo apt-get install git onboard gnome-teaks mousetweak x11-xserver-utils xinput
       cd ~
@@ -166,7 +166,7 @@ Some of the vars are xinput ids or xrandr display identifiers which you can conf
    **Auto Show > External Keyboard > all False**
 4. From the gnome tweaks menu. Add "Onboard" and "devendor modewatcher" to startup applications.
 6. Fix for chrome if you have it installed. Similar should work for chome other based browsers. See notes in chrome://accessibility.
-   .. code:: shell
+   .. code-block:: shell
       # Chrome requires a startup flag to enable accessibility persistence.
       test -f /usr/share/applications/google-chrome.desktop &&
       sed 's#/google-chrome-stable#/google-chrome-stable --force-renderer-accessibility#g'</usr/share/applications/google-chrome.desktop >~/google-chrome.desktop &&
@@ -183,7 +183,7 @@ You may have noticed that sound doesn't work. This was somewhat easier to fix in
 
 **The Lazy (insecure) way**
 
-.. code:: shell
+.. code-block:: shell
    cd ~
    apt install ./c302ca/debs/linux-headers-5.10.3_5.10.3-1_amd64.deb ./c302ca/debs/linux-image-5.10.3_5.10.3-1_amd64.deb ./c302ca/debs/linux-libc-dev_5.10.3-1_amd64.deb
 
@@ -196,10 +196,10 @@ skip to step 8
 1. Go to kernel.org_ and download the latest source release or whatever release you fancy.
 2. Verify you checksum.
 3. Install build dependencies. I think this is enough? It will fail and complain if I missed something.
-   .. code:: shell
+   .. code-block:: shell
       sudo apt install libc6-dev ncurses-dev gcc make binutils elfutils flex bison devscripts libssl-dev python-pytest
 4. unpack, configure, build.
-   .. code:: shell
+   .. code-block:: shell
      tar -Jxvf ~/Downloads/linux-x.y.z.tar.xz
      cd linux-x.y.z
      cp ~/c302ca/src/kernel-config .config
@@ -209,7 +209,7 @@ skip to step 8
      make -j2 bindeb-pkg 
 5. Get a pot of coffee. Processors keep getting faster, but the kernel keeps getting more modules and I was too lazy to do much pruning from the distro kitchen sink kernel.
 6. When it is done, if it worked.
-   .. code:: shell
+   .. code-block:: shell
      cd ..
      sudo apt install linux-image-x.y.z_x.y.z-1_amd64.deb linux-headers-x.y.z_x.y.z-1_amd64.deb linux-libc-dev-x.y.z_x.y.z-1_amd64.deb
      mv linux*.deb ~/c302ca/debs/
@@ -217,25 +217,25 @@ skip to step 8
      rm -rf linux-x-y-z ~/Downloads/linux-x.y.z.tar.xz
 7. If that was your first time, congratulations. Next time get out of the chair while it compiles because you will never get those moments back.
 8. Point intel-hda-snd at old firmware.
-   .. code:: shell
+   .. code-block:: shell
       cd /lib/firmware/intel
       sudo ln -sf dsp_fw_release_v969.bin dsp_fw_release.bin
 9. Place the topology file where the driver currently looks for it. Formerly used dfw_sst.bin. loglevel=7 boot flag should show where it is trying to find a device topology to drive the card. Note that this is built from src/skl_n88l25_m98357a-tplg. See comments in the file.
-   .. code:: shell
+   .. code-block:: shell
       cd ~
       sudo cp ./c302ca/fs/lib/firmware/skl_n88l25_m98357a-tplg.bin /lib/firmware/
 10. Add the alsa use case manager configuration.
-   .. code:: shell
+   .. code-block:: shell
       cd ~
       sudo cp -r ./c302ca/fs/usr/share/ucm2/sklnau8825max /usr/share/alsa/ucm2/
       sudo chown -R +r /usr/share/alsa/ucm2/sklnau8825max
 11. Add some acpi event listeners for headphone / speaker switching.
-   .. code:: shell
+   .. code-block:: shell
       cd ~
       sudo cp ./c302ca/fs/etc/acpi/events/* /etc/acpi/events/
       sudo chmod +r /etc/acpi/events/{plugheadphone,plugheadset,unplugheadphone}
 12. Reboot and check.
-    .. code:: shell
+    .. code-block:: shell
         rferguson@cave:~$ cat /proc/asound/cards 
          0 [sklnau8825max  ]: sklnau8825max - sklnau8825max
                       Google-Cave-1.0

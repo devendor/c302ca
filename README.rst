@@ -322,7 +322,7 @@ skip to step 8
 Call Out
 ========
 
-Please do let me know if you get sound working under SOF.
+Please do let me know if you get sound working under SOF or get the little speaker icon to switch to a headphone icon when you switch outputs.
 
 
 

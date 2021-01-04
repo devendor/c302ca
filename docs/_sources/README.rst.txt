@@ -12,15 +12,15 @@ Github `source code`_ and `documentation`_.
 What 
 ====
 
-The Asus Chromebook Flip C302CA was kind of a great deal a long while ago when it was new, but as a programmer I had a love hate relationship with it. The form factor, long battery life, table / laptop etc is just fantastic. Nothing like blowing 4 hours on battery and still having half to go. And the thing is small, with a decent keyboard so you can tablet or laptop to your hearts content.
+The Asus Chromebook Flip C302CA was kind of a great deal a long while ago when it was new, but as a programmer, I had a love hate relationship with it. The form factor, long battery life, tablet / laptop etc is just fantastic. Fanless, all-day battery life, a decent keyboard, tablet modes, small form factor etc. 
 
-The hate came with chrome os. There was promise of linux apps that every other platform after the c302ca got years before I gave up on waiting and got this working with linux. Unfortunately I had to do it a second time for an upgrade and some stuff changed and I didn't take notes, so... This time I took notes.
+The hate part came with chrome os over time. There was promise of linux apps that every other platform after the c302ca got years before I finallyt gave up installed linux. Unfortunately I had to do it a second time for an upgrade and some stuff changed. This time I took notes.
 
-The little device is now my current favorite device ever.  All aspects of it are working including suspend, resume, audio, rotation, touch, disabling the keyboard and touch pad in tablet mode, and automatically bringing up an on screen keyboard when in table mode and you bring focus to a text input. All of this on ubuntu 20.4 LTS so I shouldn't have to do this again for a good long while.
+The little device is now my current favorite device ever.  All aspects of it are working including suspend, resume, audio, rotation, touch, disabling the keyboard and touch pad in tablet mode. It even automatically brings up the on screen keyboard when in tablet mode and you bring focus to a text input. All of this on ubuntu 20.04 LTS, so I shouldn't have to do this again for a good long while.
 
-Google has since finally allegedly brought linux apps to the skylake/cave devices within chromeos, but why bother. I can't say I miss it, but it's not chomeos, it is me. I would rather build the sandbox than play in it, and it's a much more useful tool to build sandboxes if you void the warranty and put some linux on it.
+Google has finally brought linux apps to the skylake/cave devices within chromeos, but why bother. I can't say I miss it. It's not them, it is me. I would rather build the sandbox than play in it, and it's a much more useful tool to build sandboxes if you void the warranty and put some linux on it.
 
-Much of this was written after the fact so there might be some errors of memory.
+Much of this was written after the fact so there might be some errors of memory. There are also some similar models where most of this probably would apply. The c434 seems like a direct successor with a near bezelless screen update and there are various options with different CPU memory and disk out there.
 
 
 Process
@@ -326,15 +326,19 @@ skip to step 8
 14. Try to use it.
 
 
-Call Out
+Requests
 ========
 
-Please do let me know if you get sound working under SOF or get the little speaker icon to switch to a headphone icon when you switch outputs.
+* If you have some alsa chops, please review the work, and should I be using plughw: or hw:? Is there an better way to get profiles to switch without adding ACPI triggers?
+* If you have pulseaudio chops, please send me a config so my little speaker icon switches to a headphone icon when you switch outputs.
+* If you really have alsa chops, I would love to see this work with SOF. I can't offer a bounty, but I'll test for you.
+* If you get this working on other models like the c434, it would be cool to know.
+
 
 
 
 .. _third party: https://mrchromebox.tech
-.. _write protect screw: https://google.com/search?q=write+protect+screw+c302ca
+.. _write protect screw: https://www.asty.org/location-of-asus-c302c-write-protect-screw/
 .. _RMS: https://www.google.com/search?q=Richard+Stallman&tbm=isch
 .. _gravity riding everything: https://www.youtube.com/watch?v=U6XhVj5GF0I
 .. _src/modewatcher.py: https://github.com/devendor/c302ca/blob/main/src/modewatcher.py

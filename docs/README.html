@@ -45,22 +45,22 @@
 <li><a class="reference internal" href="#fixing-sound" id="id8">Fixing Sound</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#call-out" id="id9">Call Out</a></li>
+<li><a class="reference internal" href="#requests" id="id9">Requests</a></li>
 </ul>
 </div>
 <div class="section" id="what">
 <h2><a class="toc-backref" href="#id1">What</a><a class="headerlink" href="#what" title="Permalink to this headline">¶</a></h2>
-<p>The Asus Chromebook Flip C302CA was kind of a great deal a long while ago when it was new, but as a programmer I had a love hate relationship with it. The form factor, long battery life, table / laptop etc is just fantastic. Nothing like blowing 4 hours on battery and still having half to go. And the thing is small, with a decent keyboard so you can tablet or laptop to your hearts content.</p>
-<p>The hate came with chrome os. There was promise of linux apps that every other platform after the c302ca got years before I gave up on waiting and got this working with linux. Unfortunately I had to do it a second time for an upgrade and some stuff changed and I didn’t take notes, so… This time I took notes.</p>
-<p>The little device is now my current favorite device ever.  All aspects of it are working including suspend, resume, audio, rotation, touch, disabling the keyboard and touch pad in tablet mode, and automatically bringing up an on screen keyboard when in table mode and you bring focus to a text input. All of this on ubuntu 20.4 LTS so I shouldn’t have to do this again for a good long while.</p>
-<p>Google has since finally allegedly brought linux apps to the skylake/cave devices within chromeos, but why bother. I can’t say I miss it, but it’s not chomeos, it is me. I would rather build the sandbox than play in it, and it’s a much more useful tool to build sandboxes if you void the warranty and put some linux on it.</p>
-<p>Much of this was written after the fact so there might be some errors of memory.</p>
+<p>The Asus Chromebook Flip C302CA was kind of a great deal a long while ago when it was new, but as a programmer, I had a love hate relationship with it. The form factor, long battery life, tablet / laptop etc is just fantastic. Fanless, all-day battery life, a decent keyboard, tablet modes, small form factor etc.</p>
+<p>The hate part came with chrome os over time. There was promise of linux apps that every other platform after the c302ca got years before I finallyt gave up installed linux. Unfortunately I had to do it a second time for an upgrade and some stuff changed. This time I took notes.</p>
+<p>The little device is now my current favorite device ever.  All aspects of it are working including suspend, resume, audio, rotation, touch, disabling the keyboard and touch pad in tablet mode. It even automatically brings up the on screen keyboard when in tablet mode and you bring focus to a text input. All of this on ubuntu 20.04 LTS, so I shouldn’t have to do this again for a good long while.</p>
+<p>Google has finally brought linux apps to the skylake/cave devices within chromeos, but why bother. I can’t say I miss it. It’s not them, it is me. I would rather build the sandbox than play in it, and it’s a much more useful tool to build sandboxes if you void the warranty and put some linux on it.</p>
+<p>Much of this was written after the fact so there might be some errors of memory. There are also some similar models where most of this probably would apply. The c434 seems like a direct successor with a near bezelless screen update and there are various options with different CPU memory and disk out there.</p>
 </div>
 <div class="section" id="process">
 <h2><a class="toc-backref" href="#id2">Process</a><a class="headerlink" href="#process" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="void-the-warranty">
 <h3><a class="toc-backref" href="#id3">Void the warranty</a><a class="headerlink" href="#void-the-warranty" title="Permalink to this headline">¶</a></h3>
-<p>This requires removing the <a class="reference external" href="https://google.com/search?q=write+protect+screw+c302ca">write protect screw</a> and flashing to a <a class="reference external" href="https://mrchromebox.tech">third party</a> BIOS to allow install native linux. That process is covered elsewhere.</p>
+<p>This requires removing the <a class="reference external" href="https://www.asty.org/location-of-asus-c302c-write-protect-screw/">write protect screw</a> and flashing to a <a class="reference external" href="https://mrchromebox.tech">third party</a> BIOS to allow install native linux. That process is covered elsewhere.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">The above steps can brick a device, and will stop you from going back to chromeos without some additional drama.</p>
@@ -362,9 +362,14 @@ rferguson@cave:~$ pactl list cards
 </ol>
 </div>
 </div>
-<div class="section" id="call-out">
-<h2><a class="toc-backref" href="#id9">Call Out</a><a class="headerlink" href="#call-out" title="Permalink to this headline">¶</a></h2>
-<p>Please do let me know if you get sound working under SOF or get the little speaker icon to switch to a headphone icon when you switch outputs.</p>
+<div class="section" id="requests">
+<h2><a class="toc-backref" href="#id9">Requests</a><a class="headerlink" href="#requests" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>If you have some alsa chops, please review the work, and should I be using plughw: or hw:? Is there an better way to get profiles to switch without adding ACPI triggers?</li>
+<li>If you have pulseaudio chops, please send me a config so my little speaker icon switches to a headphone icon when you switch outputs.</li>
+<li>If you really have alsa chops, I would love to see this work with SOF. I can’t offer a bounty, but I’ll test for you.</li>
+<li>If you get this working on other models like the c434, it would be cool to know.</li>
+</ul>
 </div>
 </div>
 

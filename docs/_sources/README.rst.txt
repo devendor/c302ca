@@ -244,11 +244,11 @@ skip to step 8
 
    .. code-block:: shell
 
-     cd ..
-     sudo apt install linux-image-x.y.z_x.y.z-1_amd64.deb linux-headers-x.y.z_x.y.z-1_amd64.deb linux-libc-dev-x.y.z_x.y.z-1_amd64.deb
-     mv linux*.deb ~/c302ca/debs/
-     cp linux-x-y-z/.config ~/c302ca/debs/kernel-config
-     rm -rf linux-x-y-z ~/Downloads/linux-x.y.z.tar.xz
+      cd ..
+      sudo apt install linux-image-x.y.z_x.y.z-1_amd64.deb linux-headers-x.y.z_x.y.z-1_amd64.deb linux-libc-dev-x.y.z_x.y.z-1_amd64.deb
+      mv linux*.deb ~/c302ca/debs/
+      cp linux-x-y-z/.config ~/c302ca/debs/kernel-config
+      rm -rf linux-x-y-z ~/Downloads/linux-x.y.z.tar.xz
 
 7. If that was your first time, congratulations. Next time get out of the chair while it compiles because you will never get those moments back.
 8. Point intel-hda-snd at old firmware.
@@ -283,13 +283,13 @@ skip to step 8
 
 12. Reboot and check.
 
-    .. code-block:: shell
+   .. code-block:: shell
 
-        rferguson@cave:~$ cat /proc/asound/cards 
-         0 [sklnau8825max  ]: sklnau8825max - sklnau8825max
-                      Google-Cave-1.0
-        rferguson@cave:~$ pactl list cards 
-        Card #0
+      rferguson@cave:~$ cat /proc/asound/cards 
+        0 [sklnau8825max  ]: sklnau8825max - sklnau8825max
+                     Google-Cave-1.0
+      rferguson@cave:~$ pactl list cards 
+       Card #0
                 Name: alsa_card.platform-skl_n88l25_m98357a
                 Driver: module-alsa-card.c
                 Owner Module: 24

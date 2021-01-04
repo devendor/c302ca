@@ -313,51 +313,52 @@ sudo chmod +r /etc/acpi/events/<span class="o">{</span>plugheadphone,plugheadset
 </pre></div>
 </div>
 </div></blockquote>
-<ol class="arabic" start="12">
-<li><p class="first">Reboot and check.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>rferguson@cave:~$ cat /proc/asound/cards
- <span class="m">0</span> <span class="o">[</span>sklnau8825max  <span class="o">]</span>: sklnau8825max - sklnau8825max
-              Google-Cave-1.0
+<ol class="arabic simple" start="12">
+<li>Reboot and check.</li>
+</ol>
+<blockquote>
+<div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>rferguson@cave:~$ cat /proc/asound/cards
+  <span class="m">0</span> <span class="o">[</span>sklnau8825max  <span class="o">]</span>: sklnau8825max - sklnau8825max
+               Google-Cave-1.0
 rferguson@cave:~$ pactl list cards
-Card <span class="c1">#0</span>
-        Name: alsa_card.platform-skl_n88l25_m98357a
-        Driver: module-alsa-card.c
-        Owner Module: <span class="m">24</span>
-        Properties:
-                alsa.card <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
-                alsa.card_name <span class="o">=</span> <span class="s2">&quot;sklnau8825max&quot;</span>
-                alsa.long_card_name <span class="o">=</span> <span class="s2">&quot;Google-Cave-1.0&quot;</span>
-                alsa.driver_name <span class="o">=</span> <span class="s2">&quot;snd_skl_nau88l25_max98357a&quot;</span>
-                device.bus_path <span class="o">=</span> <span class="s2">&quot;platform-skl_n88l25_m98357a&quot;</span>
-                sysfs.path <span class="o">=</span> <span class="s2">&quot;/devices/platform/skl_n88l25_m98357a/sound/card0&quot;</span>
-                device.form_factor <span class="o">=</span> <span class="s2">&quot;internal&quot;</span>
-                device.string <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
-                device.description <span class="o">=</span> <span class="s2">&quot;Built-in Audio&quot;</span>
-                module-udev-detect.discovered <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
-                device.icon_name <span class="o">=</span> <span class="s2">&quot;audio-card&quot;</span>
-        Profiles:
-                Headphone: Headphone <span class="o">(</span>sinks: <span class="m">1</span>, sources: <span class="m">1</span>, priority: <span class="m">1</span>, available: yes<span class="o">)</span>
-                Speaker: Speaker <span class="o">(</span>sinks: <span class="m">1</span>, sources: <span class="m">1</span>, priority: <span class="m">1</span>, available: yes<span class="o">)</span>
-                off: Off <span class="o">(</span>sinks: <span class="m">0</span>, sources: <span class="m">0</span>, priority: <span class="m">0</span>, available: yes<span class="o">)</span>
-        Active Profile: Speaker
-        Ports:
-                <span class="o">[</span>Out<span class="o">]</span> InternalMic: Internal Mic <span class="o">(</span>priority: <span class="m">100</span>, latency offset: <span class="m">0</span> usec<span class="o">)</span>
-                        Part of profile<span class="o">(</span>s<span class="o">)</span>: Headphone, Speaker
-                <span class="o">[</span>Out<span class="o">]</span> Headphone: Headphone <span class="o">(</span>priority: <span class="m">100</span>, latency offset: <span class="m">0</span> usec<span class="o">)</span>
-                        Part of profile<span class="o">(</span>s<span class="o">)</span>: Headphone
-                <span class="o">[</span>In<span class="o">]</span> InternalMic: Internal Mic <span class="o">(</span>priority: <span class="m">2</span>, latency offset: <span class="m">0</span> usec<span class="o">)</span>
-                        Part of profile<span class="o">(</span>s<span class="o">)</span>: Headphone, Speaker
-                <span class="o">[</span>Out<span class="o">]</span> Speaker: Speaker <span class="o">(</span>priority: <span class="m">100</span>, latency offset: <span class="m">0</span> usec<span class="o">)</span>
-                        Part of profile<span class="o">(</span>s<span class="o">)</span>: Speaker
-                <span class="o">[</span>In<span class="o">]</span> Speaker: Speaker <span class="o">(</span>priority: <span class="m">100</span>, latency offset: <span class="m">0</span> usec<span class="o">)</span>
-                        Part of profile<span class="o">(</span>s<span class="o">)</span>: Speaker
+ Card <span class="c1">#0</span>
+          Name: alsa_card.platform-skl_n88l25_m98357a
+          Driver: module-alsa-card.c
+          Owner Module: <span class="m">24</span>
+          Properties:
+                  alsa.card <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
+                  alsa.card_name <span class="o">=</span> <span class="s2">&quot;sklnau8825max&quot;</span>
+                  alsa.long_card_name <span class="o">=</span> <span class="s2">&quot;Google-Cave-1.0&quot;</span>
+                  alsa.driver_name <span class="o">=</span> <span class="s2">&quot;snd_skl_nau88l25_max98357a&quot;</span>
+                  device.bus_path <span class="o">=</span> <span class="s2">&quot;platform-skl_n88l25_m98357a&quot;</span>
+                  sysfs.path <span class="o">=</span> <span class="s2">&quot;/devices/platform/skl_n88l25_m98357a/sound/card0&quot;</span>
+                  device.form_factor <span class="o">=</span> <span class="s2">&quot;internal&quot;</span>
+                  device.string <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
+                  device.description <span class="o">=</span> <span class="s2">&quot;Built-in Audio&quot;</span>
+                  module-udev-detect.discovered <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
+                  device.icon_name <span class="o">=</span> <span class="s2">&quot;audio-card&quot;</span>
+          Profiles:
+                  Headphone: Headphone <span class="o">(</span>sinks: <span class="m">1</span>, sources: <span class="m">1</span>, priority: <span class="m">1</span>, available: yes<span class="o">)</span>
+                  Speaker: Speaker <span class="o">(</span>sinks: <span class="m">1</span>, sources: <span class="m">1</span>, priority: <span class="m">1</span>, available: yes<span class="o">)</span>
+                  off: Off <span class="o">(</span>sinks: <span class="m">0</span>, sources: <span class="m">0</span>, priority: <span class="m">0</span>, available: yes<span class="o">)</span>
+          Active Profile: Speaker
+          Ports:
+                  <span class="o">[</span>Out<span class="o">]</span> InternalMic: Internal Mic <span class="o">(</span>priority: <span class="m">100</span>, latency offset: <span class="m">0</span> usec<span class="o">)</span>
+                          Part of profile<span class="o">(</span>s<span class="o">)</span>: Headphone, Speaker
+                  <span class="o">[</span>Out<span class="o">]</span> Headphone: Headphone <span class="o">(</span>priority: <span class="m">100</span>, latency offset: <span class="m">0</span> usec<span class="o">)</span>
+                          Part of profile<span class="o">(</span>s<span class="o">)</span>: Headphone
+                  <span class="o">[</span>In<span class="o">]</span> InternalMic: Internal Mic <span class="o">(</span>priority: <span class="m">2</span>, latency offset: <span class="m">0</span> usec<span class="o">)</span>
+                          Part of profile<span class="o">(</span>s<span class="o">)</span>: Headphone, Speaker
+                  <span class="o">[</span>Out<span class="o">]</span> Speaker: Speaker <span class="o">(</span>priority: <span class="m">100</span>, latency offset: <span class="m">0</span> usec<span class="o">)</span>
+                          Part of profile<span class="o">(</span>s<span class="o">)</span>: Speaker
+                  <span class="o">[</span>In<span class="o">]</span> Speaker: Speaker <span class="o">(</span>priority: <span class="m">100</span>, latency offset: <span class="m">0</span> usec<span class="o">)</span>
+                          Part of profile<span class="o">(</span>s<span class="o">)</span>: Speaker
 </pre></div>
 </div>
-</li>
-<li><p class="first">Plug in some headphone and retry <strong>pactl list cards</strong> hopefulling noting a change in the Active Profile.</p>
-</li>
-<li><p class="first">Try to use it.</p>
-</li>
+</div></blockquote>
+<ol class="arabic simple" start="13">
+<li>Plug in some headphone and retry <strong>pactl list cards</strong> hopefulling noting a change in the Active Profile.</li>
+<li>Try to use it.</li>
 </ol>
 </div>
 </div>

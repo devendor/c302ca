@@ -251,12 +251,15 @@ skip to step 8
       rm -rf linux-x-y-z ~/Downloads/linux-x.y.z.tar.xz
 
 7. If that was your first time, congratulations. Next time get out of the chair while it compiles because you will never get those moments back.
-8. Point intel-hda-snd at old firmware.
+   
+8. Point intel-hda-snd at old firmware and ensure it doesn't get switched back.
 
    .. code-block:: shell
    
       cd /lib/firmware/intel
       sudo ln -sf dsp_fw_release_v969.bin dsp_fw_release.bin
+      cd ~/c302ca &&
+      sudo install fs/etc/apt/apt.conf.d/98old-firmware /etc/apt/apt.conf.d/98old-firmware
 
 9. Place the topology file where the driver currently looks for it. Formerly used dfw_sst.bin. loglevel=7 boot flag should show where it is trying to find a device topology to drive the card. Note that this is built from src/skl_n88l25_m98357a-tplg. See comments in the file.
 

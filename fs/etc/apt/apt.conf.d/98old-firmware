@@ -1,0 +1,1 @@
+APT::Update::Post-Invoke-Success {"cd /lib/firmware && ln -sf dsp_fw_release_v969.bin dsp_fw_release.bin || true";};

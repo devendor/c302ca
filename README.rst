@@ -211,7 +211,7 @@ You may have noticed that sound doesn't work. This was somewhat easier to fix in
 .. code-block:: shell
 
    cd ~
-   apt install ./c302ca/debs/linux-headers-5.10.3_5.10.3-1_amd64.deb ./c302ca/debs/linux-image-5.10.3_5.10.3-1_amd64.deb ./c302ca/debs/linux-libc-dev_5.10.3-1_amd64.deb
+   sudo dpkg -i ./c302ca/debs/linux-headers-5.10.3_5.10.3-1_amd64.deb ./c302ca/debs/linux-image-5.10.3_5.10.3-1_amd64.deb ./c302ca/debs/linux-libc-dev_5.10.3-1_amd64.deb
 
 skip to step 8
 
@@ -273,8 +273,8 @@ skip to step 8
    .. code-block:: shell
 
       cd ~
-      sudo cp -r ./c302ca/fs/usr/share/ucm2/sklnau8825max /usr/share/alsa/ucm2/
-      sudo chown -R +r /usr/share/alsa/ucm2/sklnau8825max
+      sudo cp -r ./c302ca/fs/usr/share/alsa/ucm2/sklnau8825max /usr/share/alsa/ucm2/
+      sudo chmod -R +r /usr/share/alsa/ucm2/sklnau8825max
 
 11. Add some acpi event listeners for headphone / speaker switching.
 

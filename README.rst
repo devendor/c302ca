@@ -273,7 +273,7 @@ skip to step 8
    .. code-block:: shell
 
       cd ~
-      sudo cp -r ./c302ca/fs/usr/share/ucm2/sklnau8825max /usr/share/alsa/ucm2/
+      sudo cp -r ./c302ca/fs/usr/share/alsa/ucm2/sklnau8825max /usr/share/alsa/ucm2/
       sudo chown -R +r /usr/share/alsa/ucm2/sklnau8825max
 
 11. Add some acpi event listeners for headphone / speaker switching.
